@@ -36,7 +36,7 @@
           Libros
         </span>
       </router-link>
-      <router-link to="#" class="relative text-beige-claro">
+      <router-link :to="{name: 'profile'}" class="relative text-beige-claro">
         <span class="group relative inline-block">
           <span class="absolute inset-x-0 bottom-0 h-0.5 bg-beige-claro w-0 transition-all group-hover:w-full"></span>
           Perfil
