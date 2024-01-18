@@ -1,23 +1,22 @@
 <script setup>
-  import { ref, onMounted, onUnmounted, watch } from 'vue';
-  import { RouterView } from 'vue-router'
-  import HeaderDesktop from './components/HeaderDesktop.vue';
-  import HeaderMobile from './components/HeaderMobile.vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { RouterView } from 'vue-router'
+import HeaderDesktop from './components/HeaderDesktop.vue'
+import HeaderMobile from './components/HeaderMobile.vue'
 
-  const screenWidth = ref(window.innerWidth);
-  const handleResize = () => {
-    screenWidth.value = window.innerWidth;
-  };
+const screenWidth = ref(window.innerWidth)
+const handleResize = () => {
+  screenWidth.value = window.innerWidth
+}
 
-  onMounted(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
-  });
+onMounted(() => {
+  handleResize()
+  window.addEventListener('resize', handleResize)
+})
 
-  onUnmounted(() => {
-    window.removeEventListener('resize', handleResize);
-  });
-  
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+})
 </script>
 
 <template>
@@ -27,5 +26,3 @@
     <RouterView />
   </div>
 </template>
-
-

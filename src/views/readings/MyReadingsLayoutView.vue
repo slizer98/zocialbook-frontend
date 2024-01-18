@@ -1,10 +1,6 @@
-<script setup>
-
-</script>
+<script setup></script>
 <template>
-    <h1>Mis lecturas</h1>
+  <h1>Mis lecturas</h1>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
