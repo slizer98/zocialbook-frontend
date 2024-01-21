@@ -3,13 +3,12 @@ const config = {
     config: {
         classes: generateClasses({
             global: {
-                wrapper: 'space-y-2 mb-3',
-                message: 'border-l-4 border-red-500  text-red-600 text-sm font-bold uppercase p-2 my-3',
-                label: 'block mb-1 font-bold text-lg text-white',
-                input: 'w-full p-3 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400'
+                wrapper: 'space-y-2  w-full ',
+                message: 'border-l-4 border-red-500  text-red-600 text-xs  font-bold uppercase ',
+                input: 'w-full  border-b border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 outline-none text-sm transition duration-150 ease-in-out mb-3',
             },
             submit: {
-                input: '$reset bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-bold w-full p-3 mt-10'
+                input: '$reset bg-primary hover:bg-primary rounded-lg text-white font-bold w-full p-3 mt-10'
             }
         })
     }

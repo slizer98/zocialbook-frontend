@@ -3,16 +3,16 @@ import FooterMobile from './FooterMobile.vue'
 </script>
 
 <template>
-  <header class="h-14 px-5 sticky top-0 bg-verde-pastel flex justify-between items-center z-10">
+  <header class="h-14 px-5 sticky top-0 bg-primary flex justify-between items-center z-10">
     <RouterLink to="/">
-      <h1 class="text-beige-claro text-xl font-extrabold">ZocialBook</h1>
+      <h1 class="text-secondary text-xl font-extrabold">ZocialBook</h1>
     </RouterLink>
     <nav class="w-full flex items-center justify-end">
       <div class="h-full flex pr-4">
         <input
           type="text"
           id="search"
-          class="hidden rounded-r-lg outline-none bg-beige-claro w-3/4 text-sm p-1 text-verde-oscuro"
+          class="hidden rounded-r-lg outline-none bg-secondary w-3/4 text-sm p-1 text-verde-oscuro"
           placeholder="Nombre del libro o persona..."
         />
       </div>

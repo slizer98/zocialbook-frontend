@@ -24,7 +24,7 @@ const icons = [
 
 <template>
   <footer
-    class="fixed bottom-0 w-full h-14 px-5 border-t border-melocoton-pastel flex justify-between items-center bg-beige-claro"
+    class="fixed bottom-0 w-full h-14 px-5 border-t border-melocoton-pastel flex justify-between items-center bg-secondary"
   >
     <RouterLink
       v-for="icon in icons"
@@ -38,7 +38,7 @@ const icons = [
       />
       <div
         v-if="route.name === icon.name"
-        class="absolute bottom-0 left-0 w-full h-0.5 bg-verde-pastel"
+        class="absolute bottom-0 left-0 w-full h-0.5 bg-primary"
       ></div>
     </RouterLink>
   </footer>
