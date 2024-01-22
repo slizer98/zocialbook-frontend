@@ -75,7 +75,7 @@ const showModalSearch = ref(false)
 .modal {
   display: none;
   background-color: #f9efdb;
-  color: #C5AB66;
+  color: #70d19f;
   font-size: small;
   font-weight: bold;
   padding: 10px;

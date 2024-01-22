@@ -8,10 +8,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': '#C5AB66',
-        'melocoton-pastel': '#EBD9B4',
-        'verde-oscuro': '#638889',
-        'secondary': '#232323 '
+        'primary': '#70d19f' ,
+        'secondary': '#ffffff '
       },
       fontFamily: {
         'sans': ['Poppins', 'sans-serif'],
