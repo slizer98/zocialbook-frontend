@@ -8,7 +8,7 @@
   
   const screenWidth = ref(window.innerWidth)
   const shouldRenderHeader = ref(false)
-  const excludedRoutes = ['register', 'login', 'confirmar-cuenta']
+  const excludedRoutes = ['register', 'login', 'confirm-account']
 
   const handleResize = () => {
     screenWidth.value = window.innerWidth
