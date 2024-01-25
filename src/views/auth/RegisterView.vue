@@ -43,7 +43,7 @@
           <FormKit 
             type="text"
             name="username"
-            :placeholder="isNameFocused ? '' : 'Nombre:'"
+            placeholder="Nombre:*"
             @focus="isNameFocused = true"
             @blur="isNameFocused = false"
             validation="required|length:3"
@@ -56,7 +56,7 @@
           <FormKit 
             type="email"
             name="email"
-            placeholder="Tu E-mail"
+            placeholder="Correo:*"
             validation="required|email"
             :validation-messages="{
               required: 'El email es obligatorio',
@@ -67,7 +67,7 @@
           <FormKit 
             type="password"
             name="password"
-            placeholder="Password:"
+            placeholder="Password:*"
             validation="required|length:8"
             :validation-messages="{
               required: 'La contraseña es obligatoria',
@@ -78,7 +78,7 @@
             <FormKit 
               type="password"
               name="password_confirm"
-              placeholder="Repite la Contraseña" 
+              placeholder="Repite la Contraseña:*" 
               validation="required|confirm"
               :validation-messages="{
                 required: 'La contraseña es obligatoria',
@@ -87,10 +87,10 @@
             />
       
           <FormKit
-            type="textarea"
-            name="about"
-            placeholder="Cuéntanos sobre ti"
-            validation="length:10"
+            type="text"
+            name="favoriteAuthor"
+            placeholder="Mi autor favorito es:(opcional)"
+            validation="length:3"
             :validation-messages="{
               length: 'El texto es muy corto'
             }"
