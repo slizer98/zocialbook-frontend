@@ -1,32 +1,34 @@
 <script setup>
-import { ref } from 'vue';
-import { reset } from '@formkit/vue';
-import AuthAPI from '../../api/AuthAPI';
+  import { ref, inject } from 'vue';
+  import { reset } from '@formkit/vue';
+  import AuthAPI from '../../api/AuthAPI'
+  
 
-const isFocused = ref(true);
-const value = ref('');
-
-const handleFocus = () => {
-  isFocused.value = false;
-};
-
-const handleBlur = () => {
-  if (!value.value) {
+  const isFocused = ref(true);
+  const value = ref('');
+  const toast = inject('toast');
+  const handleFocus = () => {
     isFocused.value = false;
-  }
-};
+  };
 
-const handleSubmit = async ({ password_confirm, ...formData }) => {
-  try {
-    const createAt = new Date().toISOString();
+  const handleBlur = () => {
+    if (!value.value) {
+      isFocused.value = false;
+    }
+  };
 
-    const fullData = { ...formData, createAt };
-    const { data } = await AuthAPI.register(fullData);
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
-};
+  const handleSubmit = async ({ password_confirm, ...formData }) => {
+    try {
+      const createAt = new Date().toISOString();
+      const fullData = { ...formData, createAt };
+      const { data } = await AuthAPI.register(fullData);
+      reset('registerForm');
+      toast.open({ message: data.msg, type: 'success'})
+    } catch (error) {
+      const messageError = error.response.data.msg;
+      toast.open({ message: messageError, type: 'error'})
+    }
+  };
 </script>
 
 <template>
@@ -131,6 +133,7 @@ const handleSubmit = async ({ password_confirm, ...formData }) => {
       </FormKit>
     </div>
   </section>
+  
 </template>
 
 <style scoped>
