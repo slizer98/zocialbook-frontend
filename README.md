@@ -1,5 +1,7 @@
 # ZocialBook 📚
-<img width="384" alt="Screenshot 2024-01-19 222619" src="https://github.com/slizer98/zocialbook-frontend/assets/86857956/c9165543-7320-4782-8fa4-a4eeef5d6678">
+
+<img width="502" alt="image" src="https://github.com/slizer98/zocialbook-frontend/assets/86857956/b0e04508-c73d-4eef-a309-1bc69cbc84d3">
+
 
 ZocialBook is a modern web reading application that empowers users to track reading progress, set goals, connect with friends, and share their favorite books.
 
