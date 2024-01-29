@@ -1,9 +1,28 @@
 
 <script setup>
-  import { ref } from 'vue';
+  import { ref, inject, computed } from 'vue';
   import { reset } from '@formkit/vue'
   import AuthAPI from '../../api/AuthAPI'
 
+  const toast = inject('toast');
+  const errorPassword = ref(false);
+
+  const handleSubmit = async(formData) => {
+    try {
+      const { data } = await AuthAPI.login(formData);
+      errorPassword.value = false;
+    } catch (error) {
+      if(error.response.data.msg === 'La contraseña es incorrecta'){
+        return errorPassword.value = true;
+      }
+      toast.open({type: 'error', message: error.response.data.msg })
+    }
+  }
+
+  const incorrectPasswordMsg = computed(() => {
+    return errorPassword.value ? 'La contraseña es incorrecta' : '';
+  })
+  
 </script>
 
 <template>
@@ -29,7 +48,7 @@
             validation="required|email"
             :validation-messages="{
               required: 'El email es obligatorio',
-              email: 'Email no valido'
+              email: 'Email no valido',
             }"
           />
 
@@ -40,9 +59,10 @@
             validation="required|length:8"
             :validation-messages="{
               required: 'La contraseña es obligatoria',
-              length: 'La contraseña debe contener al menos 8 caracteres'
+              length: 'La contraseña debe contener al menos 8 caracteres',
             }"
           />
+          <span v-if="errorPassword" class=" border-red-500  text-red-600 text-xs font-bold   uppercase ">{{ incorrectPasswordMsg }} </span>
 
         <FormKit type="submit" >Iniciar Sesión</FormKit>
         <router-link :to="{name: 'register'}" class="text-sm sm:hidden">
