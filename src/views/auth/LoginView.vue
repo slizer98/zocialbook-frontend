@@ -1,16 +1,19 @@
 
 <script setup>
-  import { ref, inject, computed } from 'vue';
-  import { reset } from '@formkit/vue'
+  import { ref, inject, computed } from 'vue'
+  import { useRouter } from 'vue-router';
   import AuthAPI from '../../api/AuthAPI'
 
   const toast = inject('toast');
   const errorPassword = ref(false);
+  const router = useRouter();
 
   const handleSubmit = async(formData) => {
     try {
-      const { data } = await AuthAPI.login(formData);
+      const { data: { token } } = await AuthAPI.login(formData)
+      localStorage.setItem('AUTH_TOKEN', token)
       errorPassword.value = false;
+      router.push({name: 'home'})
     } catch (error) {
       if(error.response.data.msg === 'La contraseña es incorrecta'){
         return errorPassword.value = true;

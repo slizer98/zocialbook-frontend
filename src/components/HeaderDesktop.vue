@@ -2,10 +2,12 @@
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
 import messageIcon from '../assets/icons/message.svg'
-import searchIcon from '../assets/icons/search.svg'
+import searchIcon from '../assets/icons/searchDesktop.svg'
+import notificationIcon from '../assets/icons/notification.svg'
 
 const showModalMessages = ref(false)
 const showModalSearch = ref(false)
+const showModalNotifications = ref(false)
 </script>
 
 <template>
@@ -59,6 +61,18 @@ const showModalSearch = ref(false)
           <p>Mensajes</p>
         </div>
       </div>
+      <div class="icon-container">
+        <span
+          class="icon"
+          @mouseover="showModalNotifications = true"
+          @mouseout="showModalNotifications = false"
+        >
+          <img :src="notificationIcon" alt="icono de nofiticacion" class="w-5 sm:w-6" />
+        </span>
+        <div v-if="showModalNotifications" class="modal modalNotifications">
+          <p>Notificaciones</p>
+        </div>
+      </div>
     </nav>
   </header>
 </template>
@@ -74,7 +88,7 @@ const showModalSearch = ref(false)
 
 .modal {
   display: none;
-  background-color: #f9efdb;
+  background-color: #ffffff;
   color: #70d19f;
   font-size: small;
   font-weight: bold;
@@ -89,6 +103,12 @@ const showModalSearch = ref(false)
   transform: translateX(-50%);
 }
 .modalSearch {
+  position: absolute;
+  bottom: -40px;
+  left: 40%;
+  transform: translateX(-50%);
+}
+.modalNotifications {
   position: absolute;
   bottom: -40px;
   left: 40%;

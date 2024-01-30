@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import AuthAPI from '@/api/AuthAPI'
 
 const routes = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +8,10 @@ const routes = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/perfil',
@@ -15,6 +19,7 @@ const routes = createRouter({
       component: () => import('../views/profile/ProfileLayoutView.vue'),
       meta: { 
         title: 'Perfil',
+        requiresAuth: true,
       },
     },
     {
@@ -23,6 +28,7 @@ const routes = createRouter({
       component: () => import('../views/readings/MyReadingsLayoutView.vue'),
       meta: { 
         title: 'Mis lecturas',
+        requiresAuth: true,
       },
     },
     {
@@ -31,6 +37,7 @@ const routes = createRouter({
       component: () => import('../views/posts/AddPostsLayoutView.vue'),
       meta: { 
         title: 'Agregar publicación',
+        requiresAuth: true,
       },
     },
     {
@@ -39,6 +46,7 @@ const routes = createRouter({
       component: () => import('../views/search/SearchLayoutView.vue'),
       meta: {
         title: 'Buscar',
+        requiresAuth: true,
       },
 
     },
@@ -92,5 +100,19 @@ const routes = createRouter({
   ]
 })
 
+routes.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some(url => url.meta.requiresAuth)
+  if (requiresAuth) {
+    try {
+      await AuthAPI.auth()
+      next()
+    } catch (error) {
+      console.log(error.response.data.msg)
+      next({ name: 'login' })
+    }
+  } else {
+    next()
+  }
+})
 
 export default routes
