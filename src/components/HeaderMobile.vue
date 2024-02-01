@@ -1,5 +1,8 @@
 <script setup>
-import FooterMobile from './FooterMobile.vue'
+  import FooterMobile from './FooterMobile.vue'
+  import notificationIcon from '@/assets/icons/notification.svg'
+  import messageIcon from '@/assets/icons/message.svg'
+
 </script>
 
 <template>
@@ -16,20 +19,9 @@ import FooterMobile from './FooterMobile.vue'
           placeholder="Nombre del libro o persona..."
         />
       </div>
-      <div class="icon-container">
-        <span class="icon">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            style="fill: #f9efdb; transform:; msfilter:"
-          >
-            <path
-              d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.897 5.516 5 6.934V22l5.34-4.004C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8zm-2.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"
-            ></path>
-          </svg>
-        </span>
+      <div class="flex gap-3">
+        <img :src="messageIcon" alt="messageIcon">
+        <img :src="notificationIcon" alt="notificationIcon">
       </div>
     </nav>
   </header>
