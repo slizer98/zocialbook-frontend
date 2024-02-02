@@ -11,7 +11,7 @@ const showModalNotifications = ref(false)
 </script>
 
 <template>
-  <header class="h-14 px-10 bg-primary flex justify-between items-center">
+  <header class="h-14 px-dmd bg-primary flex justify-between items-center">
     <RouterLink to="/">
       <h1 class="text-secondary text-2xl font-extrabold md:w-1/3">ZocialBook</h1>
     </RouterLink>

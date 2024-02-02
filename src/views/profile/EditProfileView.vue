@@ -1,18 +1,27 @@
 <script setup>
   import { useUserStore } from '@/stores/user';
   import arrowIcon from '@/assets/icons/arrow.svg';
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 
   const user = useUserStore();
-  onMounted(() => {})
-  const handleSubmit = async(formData) => { }
+  onMounted(async () => {
+    await user.loadUserData();
+  })
+  const userProfile = computed(() => user?.user || {});
+  console.log(userProfile?.value?.birthday);
+  const handleSubmit = async(formData) => {
+
+   }
+
 </script>
 <template>
-  <div class="flex justify-between">
-    <img :src="arrowIcon" alt="icono de flecha">
+  <div class="flex justify-between md:px-dmd">
+    <router-link :to="{name: 'profile'}">
+      <img :src="arrowIcon" alt="icono de flecha" class="w-8 mt-2">
+    </router-link>
     <h1 class="text-xl sm:text-2xl w-3/4 flex-1 lg:text-3xl text-center my-4 font-bold  text-primary">Editar Perfil</h1>
   </div>
-  <div class="px-2">
+  <div class="md:px-dmd 2xl:px-dlg">
 
     <FormKit
       id="editProfileForm"
@@ -51,9 +60,8 @@ import { onMounted } from 'vue';
       name="location"
       :value="userProfile?.location"
       placeholder="Ubicación:"
-      validation="required|min:4"
+      validation="min:4"
       :validation-messages="{
-        required: 'La ubicación es obligatoria',
         min: 'La ubicación debe tener al menos 4 caracteres'
       }"
     />
@@ -61,12 +69,18 @@ import { onMounted } from 'vue';
     <FormKit 
       type="date"
       name="birthDate"
-      :value="userProfile?.birthDate"
+      :value="userProfile?.birthday"
       placeholder="Fecha de nacimiento:"
       validation="required"
       :validation-messages="{
         required: 'La fecha de nacimiento es obligatoria'
       }"
     />
+
+    <div class="flex items-center justify-between mt-4">
+      <button class="w-full text-sm text-start pt-2 text-gray-400 font-bold  border-b border-b-gray-300 hover:bg-gray-200 hover:text-gray-400 rounded-lg transition-none" @click="showModal = true">
+        Cambiar contraseña
+      </button>
+    </div>
   </div>
 </template>

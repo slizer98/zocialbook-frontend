@@ -47,7 +47,7 @@
           <FormKit 
             type="email"
             name="email"
-            placeholder="Correo:"
+            label="Correo Electrónico:"
             validation="required|email"
             :validation-messages="{
               required: 'El email es obligatorio',
@@ -58,7 +58,7 @@
           <FormKit 
             type="password"
             name="password"
-            placeholder="Password:"
+            label="Contraseña:"
             validation="required|length:8"
             :validation-messages="{
               required: 'La contraseña es obligatoria',

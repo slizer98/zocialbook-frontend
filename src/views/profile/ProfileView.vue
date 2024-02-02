@@ -27,9 +27,9 @@
             Editar perfil
           </RouterLink>
         </div>
-        <div class=" ">
-          <h1 class="font-semibold text-gray-900 text-xl sm:text-2xl"></h1>
-          <p class="text-xs text-gray-500"></p>
+        <div >
+          <h1 class="font-semibold text-gray-900 text-xl sm:text-2xl">{{userProfile.username}}</h1>
+          <p class="text-xs text-gray-500">#{{userProfile.favoriteAuthor}}</p>
         </div>
       </section>
       <!-- Sobre mi -->

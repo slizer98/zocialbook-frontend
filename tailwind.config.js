@@ -11,6 +11,14 @@ export default {
         'primary': '#70d19f' ,
         'secondary': '#ffffff '
       },
+      padding: {
+        'mxs': '0.5rem',
+        'dxs': '1rem',
+        'dmd': '2.5rem',
+        'dlg': '5rem',
+        'dxl': '10rem',
+        'd2xl': ' 20rem',
+      },
       fontFamily: {
         'sans': ['Poppins', 'sans-serif'],
       },
