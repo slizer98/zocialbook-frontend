@@ -31,7 +31,7 @@ ZocialBook is a modern web reading application that empowers users to track read
 
 ## Visit the Application 🌐
 
-Open your browser and go to [http://localhost:8080](http://localhost:8080/).
+Open your browser and go to [https://zocialbook-frontend.vercel.app](https://zocialbook-frontend.vercel.app).
 
 ## Contributing 🤝
 
@@ -43,7 +43,7 @@ This project is licensed under the [MIT License](https://www.notion.so/LICENSE).
 
 ## Contact 📧
 
-For inquiries, reach out to [your.email@example.com](mailto:your.email@example.com).
+For inquiries, reach out to [erick.m.villa.r@gmail.com](erick.m.villa.r@gmail.com).
 
 # zocialbook-frontend
 
