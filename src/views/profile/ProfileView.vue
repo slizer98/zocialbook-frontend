@@ -4,49 +4,74 @@
   import { computed } from 'vue';
 
   const user = useUserStore();
+
+  const profileColors = [
+    'bg-primary',
+    'bg-blue-300',
+    'bg-purple-300',
+    'bg-yellow-300',
+    'bg-red-300',
+    'bg-pink-300',
+    'bg-indigo-300',
+    'bg-gray-300',
+    'bg-black',
+  ]
+  
+  const getColorRandom = computed(() => {
+    return profileColors[Math.floor(Math.random() * profileColors.length)];
+  })
   const userProfile = computed(() => user?.user || {});
+
   
 </script>
 <template>
-  <header class="md:px-20">
+  <header class="md:px-28">
     <div class="border border-red-500 h-40 md:h-80 w-full relative">
       <figure
-        class="h-24 w-24 border border-red-500 bg-black rounded-full absolute -bottom-10 left-4"
+        class=" h-20 w-20 sm:h-24 sm:w-24 md:w-36 md:h-36  border  flex justify-center items-center rounded-full absolute -bottom-10 left-4 md:-bottom-16 "
+        :class="getColorRandom"
       >
-        <img src="" alt="" />
+        <img 
+          v-if="userProfile.profilePicture" 
+          :src="userProfile?.profilePicture" 
+          alt="" 
+          class="w-full h-full rounded-full object-contain"
+
+        />
+        <p v-else class="text-white text-4xl font-bold">{{user.getFirstLetter}}</p>
       </figure>
     </div>
   </header>
-    <main class="font-sans w-full md:px-20 flex border border-red-500 flex-col space-y-4 px-5 pb-14">
-      <section class="space-y-4 ">
-        <div class="w-full flex justify-end space-x-2 pt-2">
-          <RouterLink to="#" class="text-xs bg-primary p-1 rounded-md font-semibold">
+    <main class="font-sans w-full md:px-28 flex border border-red-500 flex-col space-y-4 px-5 pb-14">
+      <section class="space-y-4 md:flex md:items-center md:flex-col-reverse">
+        <div class="w-full flex justify-end space-x-2 pt-2 ">
+          <RouterLink to="#" class="text-xs md:text-sm bg-primary p-1 rounded-md font-semibold">
             + Favorito
           </RouterLink>
-          <RouterLink :to="{name: 'edit-profile'}" class="text-xs bg-gray-300 p-1 rounded-md font-semibold">
+          <RouterLink :to="{name: 'edit-profile'}" class="text-xs md:text-sm bg-gray-300 p-1 rounded-md font-semibold">
             Editar perfil
           </RouterLink>
         </div>
-        <div >
-          <h1 class="font-semibold text-gray-900 text-xl sm:text-2xl">{{userProfile.username}}</h1>
-          <p class="text-xs text-gray-500">#{{userProfile.favoriteAuthor}}</p>
+        <div class=" sm:w-1/2 sm:ml-4 md:w-1/2 lg:w-2/3 lg:pl-4 xl:w-3/4 2xl:w-4/5">
+          <h1 class="font-semibold text-gray-900 text-xl sm:text-2xl md:text-3xl">{{userProfile.username}}</h1>
+          <p class="text-xs md:text-sm text-gray-500">#{{userProfile.favoriteAuthor}}</p>
         </div>
       </section>
       <!-- Sobre mi -->
-      <section>
+      <section >
         <div>
-          <p class="text-gray-500 text-xs">Lugar de recidencia</p>
-          <p class="text-gray-500 text-xs">Fecha de nacimiento</p>
-          <p class="text-gray-500 text-xs">Se unió en {{userProfile.createAt }}</p>
+          <p class="text-gray-500 text-xs md:text-sm">Lugar de recidencia</p>
+          <p class="text-gray-500 text-xs md:text-sm">{{userProfile.birthday}}</p>
+          <p class="text-gray-500 text-xs md:text-sm">Se unió en {{userProfile.createAt }}</p>
         </div>
         <div class="flex gap-2 pt-2">
-          <p class="text-gray-500 text-xs">
-            <span class="text-gray-900 font-bold">
+          <p class="text-gray-500 text-xs md:text-sm">
+            <span class="text-gray-900 font-bold md:text-sm">
               {{userProfile.following}}
             </span>  Siguiendo
           </p>
-          <p class="text-gray-500 text-xs">
-            <span class="text-gray-900 font-bold">
+          <p class="text-gray-500 text-xs md:text-sm">
+            <span class="text-gray-900 font-bold md:text-sm" >
               {{userProfile.followers}}
             </span> Seguidores
           </p>

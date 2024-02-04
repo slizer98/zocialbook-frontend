@@ -5,21 +5,18 @@ import AuthAPI from "@/api/AuthAPI";
 
 export const useUserStore = defineStore("user", () => {
     const user = ref({})
-    
-    const loadUserData = async () => {
+
+    onMounted(async() => {
         try {
             const { data } = await AuthAPI.auth()
             user.value = data  
             user.value.createAt = transformDate()
             user.value.birthday = transformBirthday.value
-            console.log(user.value)
+            localStorage.setItem("user_data", JSON.stringify(data))
+            
         } catch (error) {
             console.log(error)
         }
-    }
-
-    onMounted(() => {
-        loadUserData()
     })
 
     const transformDate = () => {
@@ -39,11 +36,16 @@ export const useUserStore = defineStore("user", () => {
         }
         return ""
     })
+
+    const getFirstLetter = computed(() => {
+        if (user.value?.username) {
+            return user.value.username[0].toUpperCase()
+        }
+        return ""
+    })
     
     return {
         user,
-        transformDate,
-        loadUserData,
-        transformBirthday
+        getFirstLetter,
     }
 });
