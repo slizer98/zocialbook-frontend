@@ -57,7 +57,6 @@
       >
         
           <FormKit
-            v-model="value"
             @focus="handleFocus"
             @blur="handleBlur"
             type="text"

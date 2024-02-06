@@ -1,13 +1,23 @@
 <script setup>
   import { useUserStore } from '@/stores/user';
   import arrowIcon from '@/assets/icons/arrow.svg';
-  import { ref, onMounted, computed } from 'vue';
+  import { ref, computed } from 'vue';
   import ModalPassword from '@/components/ModalPassword.vue';
+
+  const modal = ref(false);
 
   const userData = ref(JSON.parse(localStorage.getItem('user_data')))
 
-  const handleSubmit = async(formData) => {
 
+  const showModal = () => {
+    modal.value = true;
+  }
+  const closeModal = () => {
+    modal.value = false;
+  }
+    
+  const handleSubmit = async(formData) => {
+    console.log(formData);
    }
 
 </script>
@@ -21,16 +31,21 @@
   <main class="w-screem px-mxs sm:px-dxs md:px-dmd 2xl:px-dlg ">
     <section class="max-w-screen-md md:mx-auto">
       <FormKit
-        id="editProfileForm"
+        id="updateProfileForm"
         type="form"
         :actions="false"
+        :value = "{
+          username: userData?.username,
+          favoriteAuthor: userData?.favoriteAuthor,
+          location: userData?.location,
+          birthday: userData?.birthday
+        }"
         incomplete-message="No se pudo enviar, revisa las notificaciones"
         @submit="handleSubmit"
-        >
+      >
         <FormKit
         type="text"
-        name="name"
-        :value="userData.username"
+        name="username"
         placeholder="Nombre:"
         validation="required|min:4"
         :validation-messages="{
@@ -42,11 +57,9 @@
         <FormKit 
           type="text"
           name="favoriteAuthor"
-          :value="userData?.favoriteAuthor"
           placeholder="Autor favorito:"
-          validation="required|min:4"
+          validation="min:4"
           :validation-messages="{
-            required: 'El autor favorito es obligatorio',
             min: 'El autor favorito debe tener al menos 4 caracteres'
           }"
         />
@@ -55,7 +68,6 @@
       <FormKit 
         type="text"
         name="location"
-        :value="userData?.location"
         placeholder="Ubicación:"
         validation="min:4"
         :validation-messages="{
@@ -65,8 +77,7 @@
       <!-- Fecha de nacimiento -->
       <FormKit 
         type="date"
-        name="birthDate"
-        :value="userData?.birthday"
+        name="birthdate"
         placeholder="Fecha de nacimiento:"
         validation="required"
         :validation-messages="{
@@ -77,16 +88,14 @@
       <div class="flex items-center justify-between mt-4">
         <button 
           class="w-full text-sm text-start pt-2 text-gray-400 font-bold  border-b border-b-gray-300 hover:bg-gray-200 hover:text-gray-400 rounded-lg transition-none" 
-          @click="showModal = true"
+          @click="showModal"
         >
           Cambiar contraseña
         </button>
       </div>
 
-      <FormKit
-        type="submit"
-      > Guardar cambios </FormKit> 
+      <FormKit type="submit"> Guardar cambios </FormKit>
     </section>
-      <ModalPassword />
+      <ModalPassword @close-modal="closeModal" v-if="modal" />
   </main>
 </template>

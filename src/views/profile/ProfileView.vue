@@ -60,9 +60,9 @@
       <!-- Sobre mi -->
       <section >
         <div>
-          <p class="text-gray-500 text-xs md:text-sm">Lugar de recidencia</p>
-          <p class="text-gray-500 text-xs md:text-sm">{{userProfile.birthday}}</p>
-          <p class="text-gray-500 text-xs md:text-sm">Se unió en {{userProfile.createAt }}</p>
+          <p class="text-gray-500 text-xs md:text-sm">{{userProfile.location}}</p>
+          <p class="text-gray-500 text-xs md:text-sm">{{user.transformBirthday(userProfile.birthday)}}</p>
+          <p class="text-gray-500 text-xs md:text-sm">Se unió en {{user.transformDate(userProfile.createAt) }}</p>
         </div>
         <div class="flex gap-2 pt-2">
           <p class="text-gray-500 text-xs md:text-sm">
