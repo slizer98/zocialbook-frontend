@@ -1,9 +1,24 @@
 <script setup>
+  import { inject } from 'vue'
+  import AuthAPI from '../api/AuthAPI'
+  import { reset } from '@formkit/vue'
+  
+  const toast = inject('toast');
+  const emits = defineEmits(['close-modal']);
 
-  defineEmits(['close-modal']);
+  const handleSubmit = async ({newPassword_confirm, ...dataInput}) => {
+    console.log(dataInput)
+    
+    try {
+      const { data: { token } } = await AuthAPI.changePassword(dataInput)
+      localStorage.setItem('AUTH_TOKEN', token)
+      reset('passwordForm')
+      toast.open({ message: 'Contraseña Actualizada Correctamente ', type: 'success'})
+      emits('close-modal')
 
-  const handleSubmit = async (data) => {
-    console.log(data);
+    } catch (error) {
+      toast.open({message: error.response.data.msg, type: 'error'})
+    }
   }
 </script>
 
@@ -39,7 +54,7 @@
         />
         <FormKit
         type="password"
-        name="password"
+        name="newPassword"
         label="Nueva Contraseña:"
         validation="required|length:8"
         :validation-messages="{
@@ -50,7 +65,7 @@
 
       <FormKit
         type="password"
-        name="password_confirm"
+        name="newPassword_confirm"
         label="Confirmar Contraseña:"
         validation="required|confirm"
         :validation-messages="{

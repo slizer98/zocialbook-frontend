@@ -17,5 +17,13 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         })
+    },
+    changePassword(data) {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        return api.patch('/auth/change-password', data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
     }
 }
