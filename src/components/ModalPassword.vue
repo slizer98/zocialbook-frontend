@@ -7,8 +7,6 @@
   const emits = defineEmits(['close-modal']);
 
   const handleSubmit = async ({newPassword_confirm, ...dataInput}) => {
-    console.log(dataInput)
-    
     try {
       const { data: { token } } = await AuthAPI.changePassword(dataInput)
       localStorage.setItem('AUTH_TOKEN', token)
