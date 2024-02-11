@@ -5,6 +5,7 @@ import AuthAPI from "@/api/AuthAPI";
 
 export const useUserStore = defineStore("user", () => {
     const user = ref({})
+    const userLogged = ref(false)
 
     const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 
@@ -14,7 +15,7 @@ export const useUserStore = defineStore("user", () => {
             user.value = data  
             user.value.birthday = transformBirthdayToEdit()
             localStorage.setItem("user_data", JSON.stringify(data))
-            
+            userLogged.value = true
         } catch (error) {
             console.log(error)
         }
@@ -52,11 +53,15 @@ export const useUserStore = defineStore("user", () => {
         }
         return ""
     })
+
+    const getUserName = computed( () => user.value?.name ? user.value?.name : 'hola')
     
     return {
         user,
+        getUserName,
         getFirstLetter,
         transformDate,
-        transformBirthday
+        transformBirthday,
+        userLogged,
     }
 });

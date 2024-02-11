@@ -1,10 +1,14 @@
 <script setup>
 
   import { useUserStore } from '@/stores/user';
+  import  {useRouter} from 'vue-router';
   import { computed } from 'vue';
 
-  const user = useUserStore();
+  const user = useUserStore()
+  const router = useRouter()
 
+  const username = router.currentRoute.value.params.username
+  
   const profileColors = [
     'bg-primary',
     'bg-blue-300',
@@ -20,7 +24,7 @@
   const getColorRandom = computed(() => {
     return profileColors[Math.floor(Math.random() * profileColors.length)];
   })
-  const userProfile = computed(() => user?.user || {});
+  const userProfile = computed(() => user?.user || {})
 
   
 </script>
@@ -48,7 +52,7 @@
           <RouterLink to="#" class="text-xs md:text-sm bg-primary p-1 rounded-md font-semibold">
             + Favorito
           </RouterLink>
-          <RouterLink :to="{name: 'edit-profile'}" class="text-xs md:text-sm bg-gray-300 p-1 rounded-md font-semibold">
+          <RouterLink :to="{name: 'edit-profile' }" class="text-xs md:text-sm bg-gray-300 p-1 rounded-md font-semibold">
             Editar perfil
           </RouterLink>
         </div>

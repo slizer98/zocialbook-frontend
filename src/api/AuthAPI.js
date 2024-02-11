@@ -25,5 +25,13 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         })
+    },
+    getUsernameUrl() {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        return api.get('/auth/get-usernameurl', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
     }
 }

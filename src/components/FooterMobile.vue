@@ -10,7 +10,9 @@ import searchIconTarget from '../assets/icons/searchIconTarget.svg'
 import plusIconTarget from '../assets/icons/plusIconTarget.svg'
 import bookIconTarget from '../assets/icons/bookIconTarget.svg'
 import profileIconTarget from '../assets/icons/userIconTarget.svg'
+import { useUserStore } from '@/stores/user';
 
+const user = useUserStore()
 const route = useRoute()
 
 const icons = [
@@ -20,16 +22,31 @@ const icons = [
   { name: 'my-readings', icon: bookIcon, iconTarget: bookIconTarget },
   { name: 'profile', icon: profileIcon, iconTarget: profileIconTarget }
 ]
+
+const getTo = (icon) => {
+  const requiresParams = ['profile'].includes(icon.name);
+  
+  if (requiresParams) {
+    return {
+      name: icon.name,
+      params: { username: user.user.usernameUrl }
+    };
+  } else {
+    return { name: icon.name };
+  }
+}
+
 </script>
 
 <template>
   <footer
+    v-if="user.userLogged"
     class="fixed bottom-0 w-full h-14 px-5 border-t border-melocoton-pastel flex justify-between items-center bg-secondary"
   >
     <RouterLink
       v-for="icon in icons"
       :key="icon.name"
-      :to="{ name: icon.name }"
+      :to="getTo(icon)"
       class="relative h-1/2"
     >
       <img

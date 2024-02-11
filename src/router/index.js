@@ -14,16 +14,14 @@ const routes = createRouter({
       },
     },
     {
-      path: '/perfil',
-      name: 'profile-layout',
+      path: '/:username',
       component: () => import('../views/profile/ProfileLayoutView.vue'),
-      meta: { 
-        title: 'Perfil',
+      meta: {
         requiresAuth: true,
       },
       children: [
         {
-          path: '',
+          path: '/:username',
           name: 'profile',
           component: () => import('../views/profile/ProfileView.vue'),
           meta: { 
@@ -34,8 +32,12 @@ const routes = createRouter({
           path: 'editar',
           name: 'edit-profile',
           component: () => import('../views/profile/EditProfileView.vue'),
-        }
-      ],
+          meta: { 
+            title: 'Editar perfil',
+          },
+        },
+      ]
+
     },
     {
       path: '/mis-lecturas',

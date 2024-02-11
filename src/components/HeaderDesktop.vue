@@ -1,17 +1,21 @@
 <script setup>
-import { RouterLink } from 'vue-router'
-import { ref } from 'vue'
-import messageIcon from '../assets/icons/message.svg'
-import searchIcon from '../assets/icons/searchDesktop.svg'
-import notificationIcon from '../assets/icons/notification.svg'
+  import { RouterLink } from 'vue-router'
+  import { ref } from 'vue'
+  import messageIcon from '../assets/icons/message.svg'
+  import searchIcon from '../assets/icons/searchDesktop.svg'
+  import notificationIcon from '../assets/icons/notification.svg'
+  import { useUserStore } from '@/stores/user';
 
-const showModalMessages = ref(false)
-const showModalSearch = ref(false)
-const showModalNotifications = ref(false)
+  const showModalMessages = ref(false)
+  const showModalSearch = ref(false)
+  const showModalNotifications = ref(false)
+
+  const user = useUserStore()
+
 </script>
 
 <template>
-  <header class="h-14 px-dmd bg-primary flex justify-between items-center">
+  <header v-if="user.userLogged" class="h-14 px-dmd bg-primary flex justify-between items-center">
     <RouterLink to="/">
       <h1 class="text-secondary text-2xl font-extrabold md:w-1/3">ZocialBook</h1>
     </RouterLink>
@@ -40,7 +44,7 @@ const showModalNotifications = ref(false)
           Libros
         </span>
       </router-link>
-      <router-link :to="{ name: 'profile' }" class="relative text-secondary">
+      <router-link :to="{ name: 'profile', params:{username: user.user.usernameUrl} }" class="relative text-secondary">
         <span class="group relative inline-block">
           <span
             class="absolute inset-x-0 bottom-0 h-0.5 bg-secondary w-0 transition-all group-hover:w-full"
