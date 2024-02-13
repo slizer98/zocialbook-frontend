@@ -1,16 +1,16 @@
 <script setup>
 
   import { useUserStore } from '@/stores/user';
-  import  {useRouter} from 'vue-router';
-  import { computed } from 'vue';
+  import { ref, computed } from 'vue';
+  import camera from '@/assets/icons/camera.svg';
+  import close from '@/assets/icons/close.svg';
+  import  avatar1  from '../../assets/avatars/avatar1.png';
 
   const user = useUserStore()
-  const router = useRouter()
-
-  const username = router.currentRoute.value.params.username
+  const isOptionActive = ref(false)
+  const modalActive = ref(false)
   
   const profileColors = [
-    'bg-primary',
     'bg-blue-300',
     'bg-purple-300',
     'bg-yellow-300',
@@ -26,6 +26,10 @@
   })
   const userProfile = computed(() => user?.user || {})
 
+  const toggleOptions = () => {
+    isOptionActive.value = !isOptionActive.value
+    modalActive.value = !modalActive.value
+  }
   
 </script>
 <template>
@@ -43,8 +47,24 @@
 
         />
         <p v-else class="text-white text-4xl font-bold">{{user.getFirstLetter}}</p>
+
+        <button @click="toggleOptions">
+          <figure class="h-8 w-8 md:h-10 md:w-10  rounded-full absolute -bottom-1 md:-bottom-1 right-0 sm:right-3 bg-primary flex items-center justify-center">
+            <img v-if="isOptionActive" :src="close" alt="icono de una camara" class="w-6" :class="{'options': isOptionActive, 'options-close': !isOptionActive}">
+            <img v-else :src="camera" alt="icono de una camara" class="w-6">
+          </figure>
+          <div 
+            class="modal  absolute -bottom-12 -right-32   flex flex-col justify-center items-center rounded-md"
+            :class="{ 'modal-active': modalActive, 'modal-inactive': !modalActive }"
+          >
+            <button class="p-2 bg-blur hover:bg-blur-hover rounded-md  w-36 shadow-lg">Ver Foto</button>
+            <button class="p-2 bg-blur hover:bg-blur-hover rounded-md  w-36 shadow-lg">Cambiar Foto</button>
+            <button class="p-2 bg-blur hover:bg-blur-hover rounded-md  w-36 shadow-lg">Poner Avatar</button>
+          </div>
+        </button>
       </figure>
     </div>
+    
   </header>
     <main class="font-sans w-full md:px-28 flex border border-red-500 flex-col space-y-4 px-5 pb-14">
       <section class="space-y-4 md:flex md:items-center md:flex-col-reverse">
@@ -55,6 +75,9 @@
           <RouterLink :to="{name: 'edit-profile' }" class="text-xs md:text-sm bg-gray-300 p-1 rounded-md font-semibold">
             Editar perfil
           </RouterLink>
+          <button class="transform scale-x-[-1]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #70d19f;transform: ;msFilter:;"><path d="M11 7.05V4a1 1 0 0 0-1-1 1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72 1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11 9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z"></path></svg>
+          </button>
         </div>
         <div class=" sm:w-1/2 sm:ml-4 md:w-1/2 lg:w-2/3 lg:pl-4 xl:w-3/4 2xl:w-4/5">
           <h1 class="font-semibold text-gray-900 text-xl sm:text-2xl md:text-3xl">{{userProfile.username}}</h1>
@@ -115,8 +138,52 @@
       <!-- mis publicaciones -->
       <section>
         <h2 class="font-semibold text-gray-100">Mis publicaciones</h2>
-      
       </section>
+
+
     </main>
   
 </template>
+
+<style scoped>
+
+  .options {
+    animation: spin .5s linear ;;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(180deg);
+    }
+  }
+
+  .modal {
+    transition: clip-path .5s ease-in-out;
+  }
+  .bg-blur{
+    background-color: rgba(159, 243, 194, 0.5);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease-in-out;
+  }
+  .bg-blur:hover {
+    background-color: rgba(105, 238, 161, 0.5);
+    backdrop-filter: blur(8px);
+  }
+  .modal-active {
+    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    clip-path: circle(73.7% at 48% 51%);
+  }
+
+  .modal-inactive {
+    clip-path: circle(0.0% at 0 50%);
+  }
+
+
+ 
+</style>

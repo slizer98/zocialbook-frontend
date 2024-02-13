@@ -22,6 +22,9 @@ export default {
       fontFamily: {
         'sans': ['Poppins', 'sans-serif'],
       },
+      screens: {
+        'xs': '420px',
+      },
     },
   },
   plugins: [],

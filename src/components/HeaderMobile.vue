@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <header class="h-14 px-5 sticky top-0 bg-primary flex justify-between items-center z-10">
+  <header class="h-14 px-5 fixed w-full top-0 bg-primary flex justify-between items-center z-10">
     <RouterLink to="/">
       <h1 class="text-secondary text-xl font-extrabold">ZocialBook</h1>
     </RouterLink>

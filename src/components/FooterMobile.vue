@@ -41,7 +41,7 @@ const getTo = (icon) => {
 <template>
   <footer
     v-if="user.userLogged"
-    class="fixed bottom-0 w-full h-14 px-5 border-t border-melocoton-pastel flex justify-between items-center bg-secondary"
+    class="fixed z-10 bottom-0 w-full h-14 mt-14 px-5 border-t border-melocoton-pastel flex justify-between items-center bg-secondary"
   >
     <RouterLink
       v-for="icon in icons"

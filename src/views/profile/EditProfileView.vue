@@ -40,13 +40,13 @@
 
 </script>
 <template>
-  <header class="flex justify-between md:px-dmd">
+  <header class="flex justify-between md:px-dmd mt-14 xs:mt-0">
     <router-link :to="{name: 'profile'}">
       <img :src="arrowIcon" alt="icono de flecha" class="w-8 mt-2">
     </router-link>
     <h1 class="text-xl sm:text-2xl w-3/4 flex-1 lg:text-3xl text-center my-4 font-bold  text-primary">Editar Perfil</h1>
   </header>
-  <main class="w-screem px-mxs sm:px-dxs md:px-dmd 2xl:px-dlg ">
+  <main class="w-screem px-mxs sm:px-dxs md:px-dmd 2xl:px-dlg mb-14">
     <section class="max-w-screen-md md:mx-auto">
       <FormKit
         type="form"
