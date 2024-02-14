@@ -29,7 +29,7 @@ const routes = createRouter({
           },
         },
         {
-          path: 'editar',
+          path: '/:username/editar',
           name: 'edit-profile',
           component: () => import('../views/profile/EditProfileView.vue'),
           meta: { 

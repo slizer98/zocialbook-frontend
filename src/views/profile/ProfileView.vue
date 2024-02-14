@@ -1,7 +1,7 @@
 <script setup>
 
   import { useUserStore } from '@/stores/user';
-  import { ref, computed } from 'vue';
+  import { ref, computed, watch } from 'vue';
   import camera from '@/assets/icons/camera.svg';
   import close from '@/assets/icons/close.svg';
   import  avatar1  from '../../assets/avatars/avatar1.png';
@@ -72,7 +72,7 @@
           <RouterLink to="#" class="text-xs md:text-sm bg-primary p-1 rounded-md font-semibold">
             + Favorito
           </RouterLink>
-          <RouterLink :to="{name: 'edit-profile' }" class="text-xs md:text-sm bg-gray-300 p-1 rounded-md font-semibold">
+          <RouterLink :to="{name: 'edit-profile', params:{ username: userProfile?.usernameUrl } }" class="text-xs md:text-sm bg-gray-300 p-1 rounded-md font-semibold">
             Editar perfil
           </RouterLink>
           <button class="transform scale-x-[-1]">

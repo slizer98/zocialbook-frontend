@@ -1,9 +1,13 @@
 <script setup>
-  import { useUserStore } from '@/stores/user';
   import arrowIcon from '@/assets/icons/arrow.svg';
   import { ref, inject } from 'vue';
   import ModalPassword from '@/components/ModalPassword.vue';
   import { FormKit } from '@formkit/vue';
+  import UserAPI from '@/api/UserAPI';
+  import { useRouter, useRoute } from 'vue-router';
+
+  const router = useRouter();
+  const route = useRoute();
 
   const modal = ref(false);
   const userData = ref(JSON.parse(localStorage.getItem('user_data')))
@@ -30,8 +34,15 @@
       return;
     }
   }
+  const { birthday } = formData;
+  const transformedDate = new Date(birthday).toISOString().split('T')[0];
+  const fullData = { ...formData, birthday: transformedDate };
+  const usernameUrl = route.params.username;
   try {
-    
+    console.log(fullData);
+    const { data } = await UserAPI.updateProfile(fullData, usernameUrl);
+    toast.open({ message: 'Perfil actualizado', type: 'success' });
+    router.push({ name: 'profile' });
   } catch (error) {
     console.log(error);
   }
