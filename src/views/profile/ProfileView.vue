@@ -1,7 +1,7 @@
 <script setup>
 
   import { useUserStore } from '@/stores/user';
-  import { ref, computed, watch } from 'vue';
+  import { ref, computed } from 'vue';
   import camera from '@/assets/icons/camera.svg';
   import close from '@/assets/icons/close.svg';
   import  avatar1  from '../../assets/avatars/avatar1.png';
@@ -24,13 +24,13 @@
   const getColorRandom = computed(() => {
     return profileColors[Math.floor(Math.random() * profileColors.length)];
   })
-  const userProfile = computed(() => user?.user || {})
+  const userProfile =  computed( () => user?.user || {})
 
   const toggleOptions = () => {
     isOptionActive.value = !isOptionActive.value
     modalActive.value = !modalActive.value
   }
-  
+
 </script>
 <template>
   <header class="md:px-28">
