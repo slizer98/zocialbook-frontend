@@ -17,7 +17,6 @@
   <div             
     class="modal  absolute -bottom-12 -right-32   flex flex-col justify-center items-center rounded-md"
     :class="{ 'modal-active': modalActive, 'modal-inactive': !modalActive }"
-    @click.stop
   >
     <button class="p-2 bg-blur hover:bg-blur-hover rounded-md  w-36 shadow-lg">Ver Foto</button>
     <button class="p-2 bg-blur hover:bg-blur-hover rounded-md  w-36 shadow-lg">Cambiar Foto</button>

@@ -1,5 +1,7 @@
 <script setup>
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import UserAPI from '@/api/UserAPI'
   import avartar1 from '@/assets/avatars/avatar1.png'
   import avartar2 from '@/assets/avatars/avatar2.png'
   import avartar3 from '@/assets/avatars/avatar3.png'
@@ -13,6 +15,10 @@
   defineProps(['showAvatars'])
   defineEmits(['toggleModalAvatars'])
 
+  const selected = ref(null)
+  const isSelect = ref(false)
+  const route = useRoute()
+  const router = useRouter()
   const avatars = [
     avartar1,
     avartar2,
@@ -24,9 +30,22 @@
     avartar8,
     avartar9
   ]
-
+  
   const selectedAvatar = (avatar) => {
-    console.log(avatar)
+    selected.value = avatar
+    isSelect.value = true
+  }
+
+  const saveAvatarDB = async() => {
+    try {
+      const profilePicture = selected.value
+      const usernameUrl = route.params.username
+      
+      await UserAPI.saveAvatar({profilePicture}, usernameUrl)
+      window.location.reload()
+    } catch (error) {
+      console.log(error)
+    }
   }
   
 </script>
@@ -53,7 +72,7 @@
           <img :src="avatar" :alt="avatar" class=" w-2/5 sm:w-3/4">
         </li>
       </ul>
-      <button  class="bg-primary p-2 mt-4 rounded-md text-gray-100">Guardar Avatar</button>
+      <button type="submit" v-if="selected" @click="saveAvatarDB" class="bg-primary w-full p-2 mx-auto mt-4 rounded-md text-gray-100">Guardar Avatar</button>
     </div>
   </section>
 </template>

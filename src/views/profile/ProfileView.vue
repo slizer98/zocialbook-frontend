@@ -54,8 +54,8 @@
             <img v-if="isOptionActive" :src="close" alt="icono de una camara" class="w-6" :class="{'options': isOptionActive, 'options-close': !isOptionActive}">
             <img v-else :src="camera" alt="icono de una camara" class="w-6">
           </figure>
-          <ModalOptions :modalActive="modalActive" />
         </button>
+        <ModalOptions :modalActive="modalActive" />
       </figure>
     </div>
     

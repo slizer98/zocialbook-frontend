@@ -8,5 +8,13 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         })
+    },
+    saveAvatar(profilePicture, usernameUrl) {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        return api.post(`user/save-avatar/${usernameUrl}`, profilePicture, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
     }
 }
