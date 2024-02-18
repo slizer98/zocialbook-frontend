@@ -31,28 +31,28 @@
   }
   
   const handleSubmit = async (formData) => {
-  for (const field in formData) {
-    if (formData[field] && formData[field].length < 4) {
-      const nameInSpanish = namesInSpanish[field];
-      toast.open({ message: `${nameInSpanish} debe tener al menos 4 caracteres`, type: 'error' });
-      return;
+    for (const field in formData) {
+      if (formData[field] && formData[field].length < 4) {
+        const nameInSpanish = namesInSpanish[field];
+        toast.open({ message: `${nameInSpanish} debe tener al menos 4 caracteres`, type: 'error' });
+        return;
+      }
+    }
+
+    const { birthday } = formData;
+    const transformedDate = new Date(birthday).toISOString().split('T')[0];
+    const fullData = { ...formData, birthday: transformedDate };
+    const usernameUrl = route.params.username;
+    try {
+      await UserAPI.updateProfile(fullData, usernameUrl)
+      toast.open({ message: 'Perfil actualizado', type: 'success' })
+      user.updateUser(fullData)
+      localStorage.setItem('user_data', JSON.stringify(fullData))
+      router.push({ name: 'profile' })
+    } catch (error) {
+      toast.open({ message: error.response.data.msg, type: 'error' })
     }
   }
-
-  const { birthday } = formData;
-  const transformedDate = new Date(birthday).toISOString().split('T')[0];
-  const fullData = { ...formData, birthday: transformedDate };
-  const usernameUrl = route.params.username;
-  try {
-    await UserAPI.updateProfile(fullData, usernameUrl)
-    toast.open({ message: 'Perfil actualizado', type: 'success' })
-    user.updateUser(fullData)
-    localStorage.setItem('user_data', JSON.stringify(fullData))
-    router.push({ name: 'profile' })
-  } catch (error) {
-    toast.open({ message: error.response.data.msg, type: 'error' })
-  }
-}
   
 
 </script>
@@ -66,14 +66,15 @@
   <main class="w-screem px-mxs sm:px-dxs md:px-dmd 2xl:px-dlg mb-14">
     <section class="max-w-screen-md md:mx-auto">
       <FormKit
+        id="editProfile"
         type="form"
+        :actions="false"
         :value="{
           username: userData.username ,
           favoriteAuthor: userData.favoriteAuthor || '',
           location: userData.location || '',
           birthday: userData.birthday 
         }"
-        submit-label="Guardar"
         @submit="handleSubmit"
       >
        
@@ -106,14 +107,18 @@
           placeholder="Fecha de nacimiento"
           validation="required"
         />
-        <div class="flex items-center justify-between mt-4">
+        <div class="my-4">
           <button 
+            type="button"
             class="w-full text-sm text-start pt-2 text-gray-400 font-bold  border-b border-b-gray-300 hover:bg-gray-200 hover:text-gray-400 rounded-lg transition-none" 
             @click="showModal"
           >
             Cambiar contraseña
           </button>
         </div>
+        
+        <FormKit type="submit"  > Guardar Cambios </FormKit>  
+        
       </FormKit>
     </section>
     <ModalPassword @close-modal="closeModal" v-if="modal" />
