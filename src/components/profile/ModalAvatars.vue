@@ -68,7 +68,12 @@
       </button>
       <h1 class="text-primary  font-bold text-base sm:text-xl mb-2">Selecciona un avatar</h1>
       <ul class="grid grid-cols xs:grid-cols-2 sm:grid-cols-3  gap-4 transition-all">
-        <li  v-for="avatar in avatars" @click="selectedAvatar(avatar)"  class="w-full border border-gray-300 flex justify-center hover:shadow-lg hover:border-gray-400 hover:scale-105">
+        <li  
+          v-for="avatar in avatars" 
+          @click="selectedAvatar(avatar)"  
+          class="w-full border border-gray-300 flex justify-center cursor-pointer hover:shadow-lg hover:border-gray-400 hover:scale-105"
+          :class="{'border-2  border-primary scale-110': selected === avatar}"
+        >
           <img :src="avatar" :alt="avatar" class=" w-2/5 xs:w-2/4 sm:w-3/4 ">
         </li>
       </ul>
