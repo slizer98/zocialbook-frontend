@@ -1,6 +1,6 @@
 <script setup>
-  import { ref, watch } from 'vue'
-  import { useRoute, useRouter } from 'vue-router'
+  import { ref } from 'vue'
+  import { useRoute } from 'vue-router'
   import UserAPI from '@/api/UserAPI'
   import avartar1 from '@/assets/avatars/avatar1.png'
   import avartar2 from '@/assets/avatars/avatar2.png'
@@ -18,7 +18,6 @@
   const selected = ref(null)
   const isSelect = ref(false)
   const route = useRoute()
-  const router = useRouter()
   const avatars = [
     avartar1,
     avartar2,
@@ -53,11 +52,11 @@
 <template>
   <section 
     v-if="showAvatars"
-    class="fixed inset-0   bg-black bg-opacity-50 flex items-center justify-center z-0"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10"
     @click="$emit('toggleModalAvatars')"
   >
     <div 
-      class=" w-5/6 sm:w-4/6 md:w-[60%] lg:w-[45%] snap-y overflow-y-scroll md:overflow-y-auto h-3/4 p-2 sm:p-4 z-10  bg-white sm:h-auto shadow-xl rounded-lg relative"
+      class=" w-5/6 sm:w-4/6 md:w-[60%] lg:w-[45%] snap-y overflow-y-scroll md:overflow-y-auto h-3/4 p-2 sm:p-4 z-30  bg-white sm:h-auto shadow-xl rounded-lg relative"
       @click.stop
     >
       <button 
@@ -70,6 +69,7 @@
       <ul class="grid grid-cols xs:grid-cols-2 sm:grid-cols-3  gap-4 transition-all">
         <li  
           v-for="avatar in avatars" 
+          :key="avatar"
           @click="selectedAvatar(avatar)"  
           class="w-full border border-gray-300 flex justify-center cursor-pointer hover:shadow-lg hover:border-gray-400 hover:scale-105"
           :class="{'border-2  border-primary scale-110': selected === avatar}"

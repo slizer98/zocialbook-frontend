@@ -5,11 +5,13 @@
   import ModalOptions from '@/components/profile/ModalOptions.vue';
   import camera from '@/assets/icons/camera.svg';
   import close from '@/assets/icons/close.svg';
-  import  avatar1  from '../../assets/avatars/avatar1.png';
+  import down from '@/assets/icons/down.svg';
+  import DropDownOptions from '@/components/profile/DropDownOptions.vue';
 
   const user = useUserStore()
   const isOptionActive = ref(false)
   const modalActive = ref(false)
+  const isOpen = ref(false)
   
   const profileColors = [
     'bg-blue-300',
@@ -31,6 +33,13 @@
     isOptionActive.value = !isOptionActive.value
     modalActive.value = !modalActive.value
   }
+
+  const toggleDropdown = () => {
+      isOpen.value = !isOpen.value;
+    }
+  const  closeDropdown= () => {
+      isOpen.value = false;
+    }
 
 </script>
 <template>
@@ -61,17 +70,23 @@
     
   </header>
     <main class="font-sans w-full md:px-28 flex border border-red-500 flex-col space-y-4 px-5 pb-14">
+      
       <section class="space-y-4 md:flex md:items-center md:flex-col-reverse">
-        <div class="w-full flex justify-end space-x-2 pt-2 ">
+        <div class="w-full flex justify-end space-x-2 pt-2">
           <RouterLink to="#" class="text-xs md:text-sm bg-primary p-1 rounded-md font-semibold">
             + Favorito
           </RouterLink>
           <RouterLink :to="{name: 'edit-profile', params:{ username: userProfile?.usernameUrl } }" class="text-xs md:text-sm bg-gray-300 p-1 rounded-md font-semibold">
             Editar perfil
           </RouterLink>
-          <button class="transform scale-x-[-1]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #70d19f;transform: ;msFilter:;"><path d="M11 7.05V4a1 1 0 0 0-1-1 1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72 1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11 9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z"></path></svg>
-          </button>
+          <div class="relative">
+            <button @click="toggleDropdown" class="transform scale-x-[-1]">
+              <img :src="down" alt="icono flecha abajo" :class="{'rotate-180': isOpen}">
+            </button>
+            <transition name="fade">
+              <DropDownOptions v-if="isOpen" @close-dropdown="closeDropdown" />
+            </transition>
+          </div>
         </div>
         <div class=" sm:w-1/2 sm:ml-4 md:w-1/2 lg:w-2/3 lg:pl-4 xl:w-3/4 2xl:w-4/5">
           <h1 class="font-semibold text-gray-900 text-xl sm:text-2xl md:text-3xl">{{userProfile.username}}</h1>
@@ -140,5 +155,13 @@
 </template>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
 
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
