@@ -3,10 +3,10 @@
   import { useUserStore } from '@/stores/user';
   import { ref, computed } from 'vue';
   import ModalOptions from '@/components/profile/ModalOptions.vue';
+  import DropDownOptions from '@/components/profile/DropDownOptions.vue';
   import camera from '@/assets/icons/camera.svg';
   import close from '@/assets/icons/close.svg';
   import down from '@/assets/icons/down.svg';
-  import DropDownOptions from '@/components/profile/DropDownOptions.vue';
 
   const user = useUserStore()
   const isOptionActive = ref(false)
@@ -65,6 +65,7 @@
           </figure>
         </button>
         <ModalOptions :modalActive="modalActive" />
+        
       </figure>
     </div>
     
@@ -73,10 +74,10 @@
       
       <section class="space-y-4 md:flex md:items-center md:flex-col-reverse">
         <div class="w-full flex justify-end space-x-2 pt-2">
-          <RouterLink to="#" class="text-xs md:text-sm bg-primary p-1 rounded-md font-semibold">
+          <RouterLink to="#" class="text-xs md:text-sm bg-primary hover:bg-primary-dark p-1 rounded-md font-semibold">
             + Favorito
           </RouterLink>
-          <RouterLink :to="{name: 'edit-profile', params:{ username: userProfile?.usernameUrl } }" class="text-xs md:text-sm bg-gray-300 p-1 rounded-md font-semibold">
+          <RouterLink :to="{name: 'edit-profile', params:{ username: userProfile?.usernameUrl } }" class="text-xs md:text-sm bg-gray-300 transition hover:bg-gray-400 p-1 rounded-md font-semibold">
             Editar perfil
           </RouterLink>
           <div class="relative">
