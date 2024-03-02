@@ -11,10 +11,10 @@ export default {
     },
     saveAvatar(profilePicture, usernameUrl) {
         const token = localStorage.getItem('AUTH_TOKEN')
-        return api.post(`user/save-avatar/${usernameUrl}`, profilePicture, {
+        return api.post(`user/save-picture/${usernameUrl}`, profilePicture, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
-    }
+    },
 }

@@ -1,30 +1,46 @@
 <script setup>
   import { ref } from 'vue'
+  import { useRoute } from 'vue-router';
+  import { saveCloudinary } from '@/helpers/cloudinary'
+  import UserAPI from '@/api/UserAPI';
+  
   
   defineEmits(['toggleModalProfilePicture'])
   defineProps(['showChangeProfilePicture'])
 
+  const route = useRoute()
+  
+
   const selectedFile = ref(null)
   const active = ref(false);
   const firstFilePath = ref(null);
+  const isPictureSelected = ref(false);
+  const urlCloudinary = ref(null);
 
   const toggleActive = () => {
     active.value = !active.value;
   };
   const handleFile = (event) => {
     selectedFile.value = event.target.files[0];
-    console.log(selectedFile.value); 
     firstFilePath.value = URL.createObjectURL(selectedFile.value);
+    isPictureSelected.value = true;
   }
 
   const handleFileDrop = (event) => {
     const files = event.dataTransfer.files;
     const firstFile = files[0];
     firstFilePath.value = URL.createObjectURL(firstFile);
-};
+    isPictureSelected.value = true;
+    selectedFile.value = firstFile;
+  }
 
 
-
+  const savePicture = async() => {
+    urlCloudinary.value = await saveCloudinary(selectedFile.value)
+    const profilePicture = urlCloudinary.value.url
+    await UserAPI.saveAvatar({profilePicture}, route.params.username)
+    location.reload()
+  }
   
 </script>
 
@@ -59,10 +75,13 @@
         <label for="dropzoneFile" class="cursor-pointer p-2  bg-primary hover:bg-primary-dark text-white rounded-md ">Selecciona</label>
         <input type="file" id="dropzoneFile" class="dropzoneFile" @change="handleFile" />
       </div>
-            
-      <figure class="w-1/2 mx-auto">
-        <img v-if="firstFilePath"  :src="firstFilePath" alt="preview" class="w-full h-auto" />
-      </figure>
+      <div v-if="isPictureSelected" class="w-full mt-2 flex flex-col justify-center items-center">
+        <p>Vista Previa:</p>
+        <figure class=" mx-auto  h-24 w-24 sm:h-24 sm:w-24 md:w-36 md:h-36  border border-primary  flex justify-center items-center rounded-full  ">
+          <img v-if="firstFilePath"  :src="firstFilePath" alt="preview" class="w-full h-full rounded-full object-contain" />
+        </figure>
+        <button @click="savePicture" class="bg-primary my-3 p-2 rounded-md text-white block mx-auto">Guardar Foto</button>
+      </div>
     </div>
   </section>    
 </template>
