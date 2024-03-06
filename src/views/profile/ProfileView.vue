@@ -7,6 +7,28 @@
   import camera from '@/assets/icons/camera.svg';
   import close from '@/assets/icons/close.svg';
   import down from '@/assets/icons/down.svg';
+  import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+  import { Pie } from 'vue-chartjs'
+
+  ChartJS.register(ArcElement, Tooltip, Legend)
+ 
+  const data = {
+    labels: ['Leidos', 'No leidos'],
+    datasets: [
+      {
+        data: [2, 20],
+        backgroundColor: [
+          '#70d19f',
+          'rgb(255, 99, 132)',
+        ],
+        hoverOffset: 4
+      }
+    ]
+  };
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+  }
 
   const user = useUserStore()
   const isOptionActive = ref(false)
@@ -117,23 +139,31 @@
       <section>
         <h2 class="font-semibold text-gray-900">Sobre mi</h2>
         <p class="text-xs text-gray-800">
-          Lorem ipsum dolor sit ame consectetur adipi sicing elit. Quisquam, voluptates.
+          {{userProfile.aboutMe}}
         </p>
       </section>
       <!-- mi meta como lector -->
       <article class="flex flex-col space-y-2">
         <h2 class="font-semibold text-gray-100">Reto de lectura</h2>
         <div>
-          <p class="text-xs text-gray-300">Mi meta como lector es leer 10 libros en 2024</p>
-          <div class="w-full h-2 bg-gray-300 rounded-full">
-            <div class="w-1/2 h-full bg-primary rounded-full"></div>
+          <div class="flex flex-col justify-center items-center space-y-2 sm:flex-row sm:justify-between">
+            <p class="text-sm text-gray-500">Mi meta es leer 
+              <span class="text-gray-600 font-bold">
+                {{ userProfile.annualBookGoal }}
+              </span>  libros en 2024
+            </p>
+            <div class="flex justify-end">
+              <RouterLink to="#" class="text-xs bg-gray-300 p-1 rounded-md font-semibold">
+                Editar meta
+              </RouterLink>
+            </div>
+            
           </div>
         </div>
-        <div class="flex justify-end">
-          <RouterLink to="#" class="text-xs bg-gray-300 p-1 rounded-md font-semibold">
-            Editar meta
-          </RouterLink>
+        <div class="w-full h-60 sm:h-80 md:h-96 lg:h-96 xl:h-96 2xl:h-96">
+          <Pie :data="data" :options="options" />
         </div>
+        
       </article>
       <!-- mis lecturas actuales -->
       <article>

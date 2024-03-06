@@ -27,11 +27,14 @@
     username: 'Nombre',
     favoriteAuthor: 'Autor favorito',
     location: 'Ubicación',
-    birthday: 'Fecha de nacimiento'
+    birthday: 'Fecha de nacimiento',
+    annualBookGoal: 'Meta anual de libros',
   }
   
   const handleSubmit = async (formData) => {
-    for (const field in formData) {
+
+    const { annualBookGoal, ...rest } = formData;
+    for (const field in rest) {
       if (formData[field] && formData[field].length < 4) {
         const nameInSpanish = namesInSpanish[field];
         toast.open({ message: `${nameInSpanish} debe tener al menos 4 caracteres`, type: 'error' });
@@ -39,10 +42,18 @@
       }
     }
 
+    if(annualBookGoal <= 0) {
+      toast.open({ message: 'La meta anual de libros debe ser mayor a 0', type: 'error' });
+      return;
+    }
+
     const { birthday } = formData;
     const transformedDate = new Date(birthday).toISOString().split('T')[0];
-    const fullData = { ...formData, birthday: transformedDate };
+    const annualBookGoalInt = parseInt(annualBookGoal);
+    const fullData = { ...formData, birthday: transformedDate, annualBookGoal: annualBookGoalInt };
     const usernameUrl = route.params.username;
+
+    
     try {
       await UserAPI.updateProfile(fullData, usernameUrl)
       toast.open({ message: 'Perfil actualizado', type: 'success' })
@@ -73,7 +84,9 @@
           username: userData.username ,
           favoriteAuthor: userData.favoriteAuthor || '',
           location: userData.location || '',
-          birthday: userData.birthday 
+          birthday: userData.birthday,
+          aboutMe: userData.aboutMe || '',
+          annualBookGoal: userData.annualBookGoal || ''
         }"
         @submit="handleSubmit"
       >
@@ -107,6 +120,22 @@
           placeholder="Fecha de nacimiento"
           validation="required"
         />
+        <FormKit
+          type="number"
+          name="annualBookGoal"
+          label="Meta anual de libros"
+          placeholder="Meta anual de libros"
+        />
+      
+        <FormKit
+          type="textarea"
+          name="aboutMe"
+          label="Sobre mí:"
+          class="resize-none"
+          rows="5"
+          placeholder="Escribe algo sobre ti"
+          minlength="4"
+        />
         <div class="my-4">
           <button 
             type="button"
@@ -124,3 +153,9 @@
     <ModalPassword @close-modal="closeModal" v-if="modal" />
   </main>
 </template>
+
+<style>
+  textarea {
+    resize: none;
+  }
+</style>
