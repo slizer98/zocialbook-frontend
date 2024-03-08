@@ -17,7 +17,7 @@
 <template>
   <header v-if="user.userLogged" class="h-14 px-dmd bg-primary flex justify-between items-center">
     <RouterLink to="/">
-      <h1 class="text-secondary text-2xl font-extrabold md:w-1/3">ZocialBook</h1>
+      <h1 class="text-tertiary text-2xl font-extrabold md:w-1/3">ZocialBook</h1>
     </RouterLink>
     <nav class="w-1/2 sm:w-1/3 lg:w-1/4 text-sm sm:text-base flex justify-between">
       <nav class="icon-container">
@@ -28,26 +28,26 @@
           <p>Buscar</p>
         </div>
       </nav>
-      <router-link :to="{ name: 'home' }" class="relative text-secondary">
+      <router-link :to="{ name: 'home' }" class="relative text-tertiary">
         <span class="group relative inline-block">
           <span
-            class="absolute inset-x-0 bottom-0 h-0.5 bg-secondary w-0 transition-all group-hover:w-full"
+            class="absolute inset-x-0 bottom-0 h-0.5 bg-tertiary w-0 transition-all group-hover:w-full"
           ></span>
           Inicio
         </span>
       </router-link>
-      <router-link :to="{ name: 'my-readings' }" class="relative text-secondary">
+      <router-link :to="{ name: 'my-readings' }" class="relative text-tertiary">
         <span class="group relative inline-block">
           <span
-            class="absolute inset-x-0 bottom-0 h-0.5 bg-secondary w-0 transition-all group-hover:w-full"
+            class="absolute inset-x-0 bottom-0 h-0.5 bg-tertiary w-0 transition-all group-hover:w-full"
           ></span>
           Libros
         </span>
       </router-link>
-      <router-link :to="{ name: 'profile', params:{username: user.user.usernameUrl} }" class="relative text-secondary">
+      <router-link :to="{ name: 'profile', params:{username: user.user.usernameUrl} }" class="relative text-tertiary">
         <span class="group relative inline-block">
           <span
-            class="absolute inset-x-0 bottom-0 h-0.5 bg-secondary w-0 transition-all group-hover:w-full"
+            class="absolute inset-x-0 bottom-0 h-0.5 bg-tertiary w-0 transition-all group-hover:w-full"
           ></span>
           Perfil
         </span>

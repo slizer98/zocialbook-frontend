@@ -63,7 +63,7 @@
         class="absolute top-2 right-2 text-2xl z-10" 
         @click="$emit('toggleModalAvatars')"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" style="fill: rgb(190, 136, 136);transform: ;msFilter:;"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" style="fill: rgb(190, 136, 136)"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
       </button>
       <h1 class="text-primary  font-bold text-base sm:text-xl mb-2">Selecciona un avatar</h1>
       <ul class="grid grid-cols xs:grid-cols-2 sm:grid-cols-3  gap-4 transition-all">
@@ -74,7 +74,7 @@
           class="w-full border border-gray-300 flex justify-center cursor-pointer hover:shadow-lg hover:border-gray-400 hover:scale-105"
           :class="{'border-2  border-primary scale-110': selected === avatar}"
         >
-          <img :src="avatar" :alt="avatar" class=" w-2/5 xs:w-2/4 sm:w-3/4 ">
+          <img loading="lazy" :src="avatar" :alt="avatar" class=" w-2/5 xs:w-2/4 sm:w-3/4 ">
         </li>
       </ul>
       <button type="submit" v-if="selected" @click="saveAvatarDB" class="bg-primary w-full p-2 mx-auto mt-4 rounded-md text-gray-100">Guardar Avatar</button>

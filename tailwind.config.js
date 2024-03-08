@@ -9,7 +9,8 @@ export default {
     extend: {
       colors: {
         'primary': '#70d19f' ,
-        'secondary': '#f5f5f5',
+        'secondary': '#DFDFDF',
+        'tertiary': '#f5f5f5',
         'primary-dark': '#5ab791',
       },
       padding: {

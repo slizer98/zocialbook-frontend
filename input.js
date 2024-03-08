@@ -1,1 +1,1 @@
-<input type="text" id="search" class="rounded-r-lg outline-none bg-secondary w-3/4 text-sm p-1 text-verde-oscuro" placeholder="Nombre del libro o persona..."></input>
+<input type="text" id="search" class="rounded-r-lg outline-none bg-tertiary w-3/4 text-sm p-1 text-verde-oscuro" placeholder="Nombre del libro o persona..."></input>
