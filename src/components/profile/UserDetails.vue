@@ -7,8 +7,8 @@
 </script>
 
 <template>
-  <section class=" p-5 bg-tertiary mt-4 w-full space-y-2" >
-    <h2 class="font-semibold text-gray-800 text-lg">Detalles</h2>
+  <section class="w-[99%] xs:w-full bg-tertiary md:max-w-md p-4 mt-4 l box-border space-y-2 rounded-md shadow-lg" >
+    <h2 class="font-semibold text-gray-800 text-lg text-center">Detalles</h2>
     <div>
       <p class="text-gray-500 text-sm ">Vive en 
         <span class="font-bold text-gray-800">

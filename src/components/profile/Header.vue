@@ -43,7 +43,7 @@
 
 </script>
 <template>
-  <header class="md:px-28 bg-tertiary">
+  <header class="w-full lg:px-28 bg-tertiary shadow-lg">
     <div class="border border-red-500 h-40 md:h-80 w-full relative">
       <figure
         class=" h-20 w-20 sm:h-24 sm:w-24 md:w-36 md:h-36  border  flex justify-center items-center rounded-full absolute -bottom-10 left-4 md:-bottom-16 "
@@ -84,7 +84,7 @@
           </transition>
         </div>
       </div>
-      <div class=" sm:w-1/2 sm:ml-4 md:w-1/2 lg:w-2/3 lg:pl-4 xl:w-3/4 2xl:w-4/5">
+      <div class="w-full pl-12">
         <h1 class="font-semibold text-gray-900 text-xl sm:text-2xl md:text-3xl">{{userProfile.username}}</h1>
         <p class="text-xs md:text-sm text-gray-500">#{{userProfile.favoriteAuthor}}</p>
       </div>

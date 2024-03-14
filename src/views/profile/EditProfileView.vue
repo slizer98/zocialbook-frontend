@@ -75,7 +75,7 @@
     <h1 class="text-xl sm:text-2xl w-3/4 flex-1 lg:text-3xl text-center my-4 font-bold  text-primary">Editar Perfil</h1>
   </header>
   <main class="w-screem px-mxs sm:px-dxs md:px-dmd 2xl:px-dlg mb-14">
-    <section class="max-w-screen-md md:mx-auto">
+    <section class="max-w-screen-md md:mx-auto bg-gray-50 p-4 rounded-md shadow-lg">
       <FormKit
         id="editProfile"
         type="form"

@@ -6,13 +6,14 @@
 </script>
 <template>
     <Header />
-    <main class="font-sans max-w-[1130px] mx-auto flex-wrap overflow-hidden w-full flex  flex-col xs:flex-row space-y-4  pb-14">
-      <div class="mx-auto sm:mx-0">
+    <main class="font-sans  md:mx-auto lg:px-24 flex-wrap w-full flex  flex-col sm:flex-row space-y-4  pb-14">
+      <div class="w-full sm:w-1/2">
         <!-- Sobre mi -->
         <UserDetails />
         <!-- mi meta como lector -->
         <ReadingChallenge />
       </div>
+    
       <!-- mis lecturas actuales -->
       <article>
         <h2 class="font-semibold text-gray-100">Mis lecturas actuales</h2>
@@ -30,8 +31,3 @@
     </main>
   
 </template>
-
-<style scoped>
-
-
-</style>
