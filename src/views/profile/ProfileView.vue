@@ -1,13 +1,13 @@
 <script setup>
-  import Header from '@/components/profile/Header.vue';
+  import HeaderProfile from '@/components/profile/HeaderProfile.vue';
   import UserDetails from '@/components/profile/UserDetails.vue';
   import ReadingChallenge from '@/components/profile/ReadingChalenge.vue';
 
 </script>
 <template>
-    <Header />
-    <main class="font-sans  md:mx-auto lg:px-24 flex-wrap w-full flex  flex-col sm:flex-row space-y-4  pb-14">
-      <div class="w-full sm:w-1/2">
+    <HeaderProfile />
+    <main class="font-sans sm:px-6 md:mx-auto md:px-12 lg:px-24 flex-wrap w-full flex  flex-col sm:flex-row space-y-4  pb-14">
+      <div class="w-full mx-auto xs:mx-0 sm:w-1/3">
         <!-- Sobre mi -->
         <UserDetails />
         <!-- mi meta como lector -->

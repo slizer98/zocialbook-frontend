@@ -1,7 +1,7 @@
 <script setup>
   import { useUserStore } from '@/stores/user';
   import { ref, computed } from 'vue';
-  import ModalOptions from '@/components/profile/ModalOptions.vue';
+  import ModalOptions from '@/components/profile/modals/ModalOptions.vue';
   import DropDownOptions from '@/components/profile/DropDownOptions.vue';
   import camera from '@/assets/icons/camera.svg';
   import close from '@/assets/icons/close.svg';
@@ -43,7 +43,7 @@
 
 </script>
 <template>
-  <header class="w-full lg:px-28 bg-tertiary shadow-lg">
+  <header class="w-full sm:px-6 md:px-12 lg:px-28 bg-tertiary shadow-lg">
     <div class="border border-red-500 h-40 md:h-80 w-full relative">
       <figure
         class=" h-20 w-20 sm:h-24 sm:w-24 md:w-36 md:h-36  border  flex justify-center items-center rounded-full absolute -bottom-10 left-4 md:-bottom-16 "

@@ -25,5 +25,4 @@ export const saveCloudinary = async (selectedFile) => {
     })
     return data.json();
 
-        
 }

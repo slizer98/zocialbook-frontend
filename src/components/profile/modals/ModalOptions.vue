@@ -1,12 +1,14 @@
 <script setup>
   import { ref } from 'vue'
   import ModalAvatars from './ModalAvatars.vue'
-  import ModalProfilePicture from './ModalProfilePicture.vue'
+  import ModalProfilePicture from './ModalChangeProfilePicture.vue'
+  import ModalSeeProfilePicture from './ModalSeeProfilePicture.vue'
 
  defineProps(['modalActive'])
   
     const showAvatars = ref(false)
     const showChangeProfilePicture = ref(false)
+    const showProfilePicture = ref(false)
   
     const toggleModalAvatars = () => {
       showAvatars.value = !showAvatars.value
@@ -14,6 +16,10 @@
 
     const toggleModalProfilePicture = () => {
       showChangeProfilePicture.value = !showChangeProfilePicture.value
+    }
+
+    const toggleModalSeeProfilePicture = () => {
+      showProfilePicture.value = !showProfilePicture.value
     }
  
  
@@ -25,6 +31,7 @@
     :class="{ 'modal-active': modalActive, 'modal-inactive': !modalActive }"
   >
     <button 
+      @click="toggleModalSeeProfilePicture"
       class="p-2 bg-blur hover:bg-blur-hover rounded-md text-sm sm:text-base w-32 sm:w-36 shadow-lg"
     >
       Ver Foto
@@ -44,6 +51,7 @@
   </div>
 <ModalAvatars v-if="showAvatars" :showAvatars="showAvatars" @toggleModalAvatars="toggleModalAvatars" />
 <ModalProfilePicture v-if="showChangeProfilePicture" :showChangeProfilePicture="showChangeProfilePicture" @toggleModalProfilePicture="toggleModalProfilePicture"/>
+<ModalSeeProfilePicture v-if="showProfilePicture" :showProfilePicture="showProfilePicture" @toggleModalSeeProfilePicture="toggleModalSeeProfilePicture" />
 </template>
 
 <style  scoped>
@@ -86,4 +94,4 @@
 }
 
 
-</style>
+</style>./modals/ModalAvatars.vue./ModalChangeProfilePicture.vue
