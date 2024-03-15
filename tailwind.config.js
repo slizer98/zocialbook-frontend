@@ -10,7 +10,7 @@ export default {
       colors: {
         'primary': '#70d19f' ,
         'secondary': '#DFDFDF',
-        'tertiary': '#f5f5f5',
+        'tertiary': '#070707',
         'primary-dark': '#5ab791',
       },
       padding: {

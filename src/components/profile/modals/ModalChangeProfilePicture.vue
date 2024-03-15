@@ -1,21 +1,21 @@
 <script setup>
-  import { ref } from 'vue'
+  import { ref, inject } from 'vue'
   import { useRoute } from 'vue-router';
-  import { saveCloudinary } from '@/helpers/cloudinary'
   import UserAPI from '@/api/UserAPI';
-  
   
   defineEmits(['toggleModalProfilePicture'])
   defineProps(['showChangeProfilePicture'])
 
+  const toast = inject('toast')
+
   const route = useRoute()
   
+  const imageExtensions = ['jpg', 'jpeg', 'png', 'webp', 'svg']
 
   const selectedFile = ref(null)
   const active = ref(false);
   const firstFilePath = ref(null);
   const isPictureSelected = ref(false);
-  const urlCloudinary = ref(null);
 
   const toggleActive = () => {
     active.value = !active.value;
@@ -29,6 +29,11 @@
   const handleFileDrop = (event) => {
     const files = event.dataTransfer.files;
     const firstFile = files[0];
+    const extension = firstFile.name.split('.').pop();
+    if (!imageExtensions.includes(extension)) {
+      toast.error('Solo se permiten imagenes');
+      return;
+    }
     firstFilePath.value = URL.createObjectURL(firstFile);
     isPictureSelected.value = true;
     selectedFile.value = firstFile;
@@ -36,10 +41,10 @@
 
 
   const savePicture = async() => {
-    urlCloudinary.value = await saveCloudinary(selectedFile.value)
-    const profilePicture = urlCloudinary.value.url
-    await UserAPI.saveAvatar({profilePicture}, route.params.username)
-    location.reload()
+    const usernameUrl = route.params.username
+    const file = selectedFile.value
+    await UserAPI.savePicture(file, usernameUrl)
+    window.location.reload()
   }
   
 </script>
@@ -73,7 +78,7 @@
         <span>Arrastra el archivo aquí</span>
         <span>O</span>
         <label for="dropzoneFile" class="cursor-pointer p-2  bg-primary hover:bg-primary-dark text-white rounded-md ">Selecciona</label>
-        <input type="file" id="dropzoneFile" class="dropzoneFile" @change="handleFile" />
+        <input type="file" id="dropzoneFile" class="dropzoneFile" @change="handleFile" accept="image/*" />
       </div>
       <div v-if="isPictureSelected" class="w-full mt-2 flex flex-col justify-center items-center">
         <p>Vista Previa:</p>

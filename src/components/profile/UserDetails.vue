@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <section class="w-[99%] xs:w-full bg-tertiary md:max-w-md p-4 mt-4 l box-border space-y-2 rounded-md shadow-lg" >
+  <section class="w-[99%] xs:w-full bg-gray-50 md:max-w-md p-4 mt-4 l box-border space-y-2 rounded-md shadow-lg" >
     <h2 class="font-semibold text-gray-800 text-lg text-center">Detalles</h2>
     <div>
       <p class="text-gray-500 text-sm ">Vive en 

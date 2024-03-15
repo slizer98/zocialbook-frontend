@@ -16,7 +16,7 @@
     
       <!-- mis lecturas actuales -->
       <article>
-        <h2 class="font-semibold text-gray-100">Mis lecturas actuales</h2>
+        <h2 class="font-semibold text-gray-800">Mis lecturas actuales</h2>
           <!-- contenedor para mostrar nombre del libro, paginas leidas de x numero de paginas e imagen del libro -->
         <div>
           <figure>
@@ -26,7 +26,7 @@
       </article>
       <!-- mis publicaciones -->
       <section>
-        <h2 class="font-semibold text-gray-100">Mis publicaciones</h2>
+        <h2 class="font-semibold text-gray-800">Mis publicaciones</h2>
       </section>
     </main>
   

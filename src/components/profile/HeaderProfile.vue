@@ -43,7 +43,7 @@
 
 </script>
 <template>
-  <header class="w-full sm:px-6 md:px-12 lg:px-28 bg-tertiary shadow-lg">
+  <header class="w-full sm:px-6 md:px-12 lg:px-28 bg-gray-50 shadow-lg">
     <div class="border border-red-500 h-40 md:h-80 w-full relative">
       <figure
         class=" h-20 w-20 sm:h-24 sm:w-24 md:w-36 md:h-36  border  flex justify-center items-center rounded-full absolute -bottom-10 left-4 md:-bottom-16 "
@@ -67,7 +67,7 @@
         <ModalOptions :modalActive="modalActive" />
       </figure>
     </div>
-    <section class="space-y-4 md:px-28 px-5 w-full md:flex md:items-center md:flex-col-reverse bg-tertiary pb-6">
+    <section class="space-y-4 md:px-28 px-5 w-full md:flex md:items-center md:flex-col-reverse bg-gray-50 pb-6">
       <div class="w-full flex justify-end space-x-2 pt-2">
         <RouterLink to="#" class="text-xs md:text-sm bg-primary hover:bg-primary-dark p-1 rounded-md font-semibold">
           + Favorito
