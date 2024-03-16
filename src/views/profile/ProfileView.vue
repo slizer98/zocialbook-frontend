@@ -2,7 +2,8 @@
   import HeaderProfile from '@/components/profile/HeaderProfile.vue';
   import UserDetails from '@/components/profile/UserDetails.vue';
   import ReadingChallenge from '@/components/profile/ReadingChalenge.vue';
-
+  import NewPost from '@/components/NewPost.vue';
+  import PostsProfile from '@/components/profile/PostsProfile.vue';
 </script>
 <template>
     <HeaderProfile />
@@ -12,22 +13,20 @@
         <UserDetails />
         <!-- mi meta como lector -->
         <ReadingChallenge />
-      </div>
-    
-      <!-- mis lecturas actuales -->
-      <article>
-        <h2 class="font-semibold text-gray-800">Mis lecturas actuales</h2>
-          <!-- contenedor para mostrar nombre del libro, paginas leidas de x numero de paginas e imagen del libro -->
-        <div>
-          <figure>
-            <img src="" alt="">
-          </figure>
-        </div>
-      </article>
-      <!-- mis publicaciones -->
-      <section>
-        <h2 class="font-semibold text-gray-800">Mis publicaciones</h2>
-      </section>
+        <article>
+          <h2 class="font-semibold text-gray-800">Mis lecturas actuales</h2>
+            <!-- contenedor para mostrar nombre del libro, paginas leidas de x numero de paginas e imagen del libro -->
+          <div>
+            <figure>
+              <img src="" alt="">
+            </figure>
+          </div>
+        </article>
+      </div>  
+      <div class="flex-1">
+        <NewPost />
+        <PostsProfile />
+      </div>   
     </main>
   
 </template>
