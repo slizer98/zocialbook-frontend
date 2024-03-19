@@ -61,6 +61,15 @@ export const useUserStore = defineStore('user', () => {
     user.value = { ...user.value, ...newUserData };
   };
 
+  const disableScroll = () => {
+    document.body.style.overflow = 'hidden';
+  };
+
+  const enableScroll = () => {
+    document.body.style.overflow = 'auto';
+  
+  }
+
   return {
     user,
     getFirstLetter,
@@ -68,5 +77,7 @@ export const useUserStore = defineStore('user', () => {
     transformBirthday,
     userLogged,
     updateUser,
+    disableScroll,
+    enableScroll
   };
 });

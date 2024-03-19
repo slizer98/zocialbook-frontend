@@ -1,13 +1,22 @@
 <script setup>
+  import { computed, ref } from 'vue';
   import { useUserStore } from '@/stores/user';
-  import { computed } from 'vue';
-  import { QuillEditor } from '@vueup/vue-quill'
-  import '@vueup/vue-quill/dist/vue-quill.snow.css';
+  import ModalNewPost from '@/components/profile/modals/ModalNewPost.vue';
 
   const user = useUserStore()
+  const isPostOpen = ref(false)
 
-  const userProfile =  computed( () => user?.user || {})
-  
+  const userProfile = computed(() => user?.user || {})
+
+  const toggleModal = () => {
+    isPostOpen.value = !isPostOpen.value
+    if(isPostOpen.value){
+      user.disableScroll()
+    }
+    else{
+      user.enableScroll()
+    }
+  }
 </script>
 
 <template>
@@ -17,20 +26,20 @@
       <!-- foto de perfil en miniatura -->
       <figure class="h-10 w-10">
         <img 
-        :src="userProfile?.profilePicture" 
-        alt="Foto de perfil del usuario"
-        class="w-full h-full rounded-full object-contain"
+          :src="userProfile?.profilePicture" 
+          alt="Foto de perfil del usuario"
+          class="w-full h-full rounded-full object-contain"
         >
       </figure>
       <!-- boton para abrir modal para la publicacion  -->
-      <button class="text-gray-500 bg-gray-200 hover:bg-gray-300 w-full rounded-2xl text-start pl-2 transition-colors ">
+      <button 
+        class="text-gray-500 bg-gray-200 hover:bg-gray-300 w-full rounded-2xl text-start pl-2 transition-colors"
+        @click="toggleModal"
+      >
         ¿Qué estás pensando?
       </button>
-
     </div>
-    <div>
-      <QuillEditor theme="snow" toolbar="essential" />
-    </div>
+    <ModalNewPost v-if="isPostOpen" :isPostOpen="isPostOpen" @toggleModal="toggleModal" />
   </article>
 </template>
 

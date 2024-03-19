@@ -3,23 +3,42 @@
   import ModalAvatars from './ModalAvatars.vue'
   import ModalProfilePicture from './ModalChangeProfilePicture.vue'
   import ModalSeeProfilePicture from './ModalSeeProfilePicture.vue'
-
- defineProps(['modalActive'])
+  import { useUserStore } from '@/stores/user'
   
+ defineProps(['modalActive'])
+    const user = useUserStore()
     const showAvatars = ref(false)
     const showChangeProfilePicture = ref(false)
     const showProfilePicture = ref(false)
   
     const toggleModalAvatars = () => {
       showAvatars.value = !showAvatars.value
+      if(showAvatars.value){
+        user.disableScroll()
+      }
+      else{
+        user.enableScroll()
+      }
     }
 
     const toggleModalProfilePicture = () => {
       showChangeProfilePicture.value = !showChangeProfilePicture.value
+      if(showChangeProfilePicture.value){
+        user.disableScroll()
+      }
+      else{
+        user.enableScroll()
+      }
     }
 
     const toggleModalSeeProfilePicture = () => {
       showProfilePicture.value = !showProfilePicture.value
+      if(showProfilePicture.value){
+        user.disableScroll()
+      }
+      else{
+        user.enableScroll()
+      }
     }
  
  
