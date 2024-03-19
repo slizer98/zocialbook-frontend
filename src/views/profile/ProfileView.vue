@@ -7,8 +7,8 @@
 </script>
 <template>
     <HeaderProfile />
-    <main class="font-sans sm:px-6 md:mx-auto md:px-12 lg:px-24 flex-wrap w-full flex  flex-col sm:flex-row space-y-4  pb-14">
-      <div class="w-full mx-auto xs:mx-0 sm:w-1/3">
+    <main class="font-sans sm:px-6 md:mx-auto md:px-12 lg:px-24 flex-wrap w-full flex box-border flex-col sm:flex-row space-y-4  pb-14">
+      <div class="w-full mx-auto xs:mx-0 sm:w-[33%]">
         <!-- Sobre mi -->
         <UserDetails />
         <!-- mi meta como lector -->
@@ -23,7 +23,7 @@
           </div>
         </article>
       </div>  
-      <div class="flex-1">
+      <div class="flex-1  ">
         <NewPost />
         <PostsProfile />
       </div>   

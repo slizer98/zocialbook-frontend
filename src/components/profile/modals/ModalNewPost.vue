@@ -1,21 +1,41 @@
 <script setup>
   import { QuillEditor } from '@vueup/vue-quill'
-  import '@vueup/vue-quill/dist/vue-quill.snow.css';
-
+  import '@vueup/vue-quill/dist/vue-quill.snow.css'
+  import { ref } from 'vue'
 
   defineEmits(['toggleModal'])
   defineProps(['isPostOpen'])
-  
+  const editorContent = ref('');
+  let quillInstance = null;
+  const isContentValid = ref(false);
+
+  const onEditorReady = (quill) => {
+    isContentValid.value = editorContent.value.trim().length > 0
+    quillInstance = quill;
+  }
+
+  const getEditorContent = () => {
+    if (quillInstance) {
+      editorContent.value = quillInstance.root.innerHTML
+      console.log(editorContent.value)
+    }
+  }
+
+  const handleTextChange = ({ delta }) => {
+  // Verifica si el delta indica que hay contenido en el editor
+  isContentValid.value = delta?.ops.some(op => op.insert && op.insert.trim().length > 0);
+}
+
 </script>
 
 <template>
   <section 
   v-if="isPostOpen"
-  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10"
+  class="fixed inset-0 transition-opacity bg-opacity-50 bg-black  flex items-center justify-center z-10"
   @click="$emit('toggleModal')"
 >
   <div 
-    class=" w-5/6 sm:w-4/6 md:w-[60%] lg:w-[45%] snap-y overflow-y-scroll md:overflow-y-auto h-3/4 p-2 sm:p-4 z-30  bg-white sm:h-auto shadow-xl rounded-lg relative"
+    class=" w-5/6 sm:w-4/6 md:w-[60%] lg:w-[45%] snap-y overflow-y-scroll md:overflow-y-auto h-3/4 p-2 sm:p-4 z-30  bg-white sm:h-auto shadow-xl rounded-lg relative "
     @click.stop
   >
     <button 
@@ -28,7 +48,7 @@
 
     <div class="editor-wrapper h-72 max-h-80 overflow-y-scroll">
       <div class="toolbar"></div>
-      <QuillEditor toolbar="#my-toolbar" >
+      <QuillEditor toolbar="#my-toolbar" v-model:content="editorContent" @ready="onEditorReady" @textChange="handleTextChange" >
         <template #toolbar>
           <div id="my-toolbar">
             <!-- dropdown with several title buttons -->
@@ -46,15 +66,20 @@
             <button class="ql-list" value="ordered"></button>
             <button class="ql-list" value="bullet"></button>
             <button class="ql-clean"></button>
-    
-            <!-- But you can also add your own -->
-            <button id="custom-button"></button>
           </div>
         </template>
       </QuillEditor>
     
     </div>
-    <button type="submit" class="bg-primary w-full p-2 mx-auto mt-4 rounded-md text-gray-100">Publicar</button>
+    <button  
+      type="submit" 
+      @click="getEditorContent" 
+      :disabled="!isContentValid" 
+      :class="{ 'cursor-not-allowed opacity-50': !isContentValid }"
+      class="bg-primary w-full p-2 mx-auto mt-4 rounded-md text-gray-100"
+    >
+      Publicar
+    </button>
   </div>
 </section>
 </template>
@@ -72,4 +97,7 @@
   top: 0;
   z-index: 100;
 }
+
+
+
 </style>

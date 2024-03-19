@@ -20,7 +20,7 @@
 </script>
 
 <template>
-  <article class="w-full ml-4 mb-4 bg-gray-50 box-border rounded-md shadow-lg p-4">
+  <article class="w-full sm:ml-4 mb-4 bg-gray-50 box-border rounded-md shadow-lg p-4">
     <div class="flex gap-2">
 
       <!-- foto de perfil en miniatura -->
