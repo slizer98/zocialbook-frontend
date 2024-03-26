@@ -18,6 +18,7 @@
     "@formkit/vue": "^1.4.0",
     "@vueup/vue-quill": "^1.2.0",
     "axios": "^1.6.5",
+    "codegpt-nextjs": "file:../../../../../.vscode/extensions/danielsanmedium.dscodegpt-3.2.3/standalone",
     "pinia": "^2.1.7",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5",

@@ -1,8 +1,10 @@
 <script setup>
   import { computed, ref } from 'vue';
   import { useUserStore } from '@/stores/user';
+  import { usePostStore } from '@/stores/post'
   import ModalNewPost from '@/components/profile/modals/ModalNewPost.vue';
 
+  const post = usePostStore()
   const user = useUserStore()
   const isPostOpen = ref(false)
 
@@ -33,10 +35,10 @@
       </figure>
       <!-- boton para abrir modal para la publicacion  -->
       <button 
-        class="text-gray-500 bg-gray-200 hover:bg-gray-300 w-full rounded-2xl text-start pl-2 transition-colors"
+        class="text-gray-500  bg-gray-200 hover:bg-gray-300 w-full rounded-2xl text-start pl-2 max-h-12 overflow-y-hidden  transition-colors"
         @click="toggleModal"
       >
-        ¿Qué estás pensando?
+        {{ post.textPost ? post.textPost : '¿Qué estás pensando?' }}
       </button>
     </div>
     <ModalNewPost v-if="isPostOpen" :isPostOpen="isPostOpen" @toggleModal="toggleModal" />
