@@ -1,12 +1,17 @@
 <script setup>
   import { useUserStore } from '@/stores/user';
+  import { usePostStore } from '@/stores/post';
   import TexEditor from '@/components/TextEditor.vue'
 
   const user = useUserStore()
+  const post = usePostStore()
 
   defineProps(['isPostOpen'])
   defineEmits(['toggleModal'])
   
+  const getText = () => {
+    console.log(post?.textPost)
+  }
   
 </script>
 
@@ -17,7 +22,7 @@
     @click="$emit('toggleModal')"
   >
     <div 
-      class=" w-5/6 sm:w-4/6 md:w-[60%] lg:w-[45%] snap-y overflow-y-scroll md:overflow-y-auto h-3/4 p-2 sm:p-4 z-30  bg-white sm:h-auto shadow-xl rounded-lg relative"
+      class=" w-5/6 sm:w-4/6 md:w-[50%] lg:w-[45%] snap-y overflow-y-scroll  h-3/4 p-2 sm:p-4 z-30  bg-white sm:h-3/4 shadow-xl rounded-lg relative"
       @click.stop
     >
       <button 
@@ -39,7 +44,7 @@
       </div>
       <!-- aqui va el contenido del modal -->
       <TexEditor />
-      <button type="submit"  class="bg-primary w-full p-2 mx-auto mt-4 rounded-md text-gray-100">Publicar</button>
+      <button type="submit" @click="getText"  class="bg-primary w-full p-2 mx-auto mt-4 rounded-md text-gray-100">Publicar</button>
     </div>
   </section>
 </template>
