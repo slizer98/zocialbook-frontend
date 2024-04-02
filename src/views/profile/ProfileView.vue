@@ -7,7 +7,7 @@
 </script>
 <template>
     <HeaderProfile />
-    <main class="font-sans sm:px-6 md:mx-auto md:px-12 lg:px-60 flex-wrap w-full flex box-border flex-col sm:flex-row space-y-4  pb-14">
+    <main class="font-sans sm:px-6 md:mx-auto md:px-12 max-w-[1390px]  flex-wrap w-full flex box-border flex-col sm:flex-row space-y-4  pb-14">
       <div class="w-full mx-auto xs:mx-0 sm:w-[33%]">
         <!-- Sobre mi -->
         <UserDetails />

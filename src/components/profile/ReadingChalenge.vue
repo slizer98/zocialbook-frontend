@@ -30,9 +30,9 @@
 
 <template>
   <article class="w-[99%] xs:w-full md:max-w-md flex flex-col justify-center items-center bg-gray-50 mt-4 box-border rounded-md shadow-lg p-4">
-    <h2 class="font-semibold text-gray-800 text-lg">Reto de lectura</h2>
+    <h2 class="font-semibold text-gray-800 text-xl md:text-2xl">Reto de lectura</h2>
       <div class="flex flex-col justify-center items-center space-y-2 sm:flex-row sm:justify-between">
-        <p class="text-sm text-gray-500">Mi meta es leer 
+        <p class="text-base md:text-lg text-gray-500">Mi meta es leer 
           <span class="text-gray-600 font-bold">
             {{ userProfile.annualBookGoal }}
           </span>  libros en 2024
@@ -43,7 +43,7 @@
       <Doughnut :data="data" :options="options" />
       <p class="absolute  top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl sm:text-5xl font-bold text-primary">20%</p>
     </div>
-    <RouterLink to="#" class="text-sm w-full bg-gray-300 hover:bg-gray-400 p-3 text-center rounded-md font-semibold transition ">
+    <RouterLink to="#" class="text-base md:text-lg w-full mt-3 bg-gray-300 hover:bg-gray-400 p-3 text-center rounded-md font-semibold transition ">
       Editar meta
     </RouterLink>
   </article>

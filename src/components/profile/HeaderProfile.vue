@@ -69,10 +69,10 @@
     </div>
     <section class="space-y-4 md:px-28 px-5 w-full md:flex md:items-center md:flex-col-reverse bg-gray-50 pb-6">
       <div class="w-full flex justify-end space-x-2 pt-2">
-        <RouterLink to="#" class="text-xs md:text-sm bg-primary hover:bg-primary-dark p-1 rounded-md font-semibold">
+        <RouterLink to="#" class="text-sm md:text-base bg-primary hover:bg-primary-dark p-1 rounded-md font-semibold">
           + Favorito
         </RouterLink>
-        <RouterLink :to="{name: 'edit-profile', params:{ username: userProfile?.usernameUrl } }" class="text-xs md:text-sm bg-gray-300 transition hover:bg-gray-400 p-1 rounded-md font-semibold">
+        <RouterLink :to="{name: 'edit-profile', params:{ username: userProfile?.usernameUrl } }" class="text-sm md:text-base bg-gray-300 transition hover:bg-gray-400 p-1 rounded-md font-semibold">
           Editar perfil
         </RouterLink>
         <div class="relative">
@@ -86,7 +86,7 @@
       </div>
       <div class="w-full pl-12">
         <h1 class="font-semibold text-gray-900 text-xl sm:text-2xl md:text-3xl">{{userProfile.username}}</h1>
-        <p class="text-xs md:text-sm text-gray-500">#{{userProfile.favoriteAuthor}}</p>
+        <p class="text-xs md:text-base text-gray-500">#{{userProfile.favoriteAuthor}}</p>
       </div>
     </section>
   </header>
