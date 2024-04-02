@@ -1,10 +1,8 @@
-// useTextEditor.js
 
 import { ref } from 'vue';
 
 export function useTextEditor() {
   const selectedText = ref('');
-
   const getSelectedText = () => {
     if (window.getSelection) {
       selectedText.value = window.getSelection().toString()

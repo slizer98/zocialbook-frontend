@@ -11,6 +11,7 @@
   
   const getText = () => {
     console.log(post?.textPost)
+    console.log(post?.imagePost)
   }
   
 </script>
