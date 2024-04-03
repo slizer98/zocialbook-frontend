@@ -37,7 +37,7 @@
   }
   const getImagePost = (event) => {
     selectedFile.value = event.target.files[0];
-    post.imagePost = event.target.files[0]
+    post.imagePost = selectedFile.value
     uploadImage.value = false
     firstFilePath.value = URL.createObjectURL(selectedFile.value)
   }

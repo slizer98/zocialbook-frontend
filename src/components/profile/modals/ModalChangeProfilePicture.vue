@@ -43,6 +43,7 @@
   const savePicture = async() => {
     const usernameUrl = route.params.username
     const file = selectedFile.value
+    console.log(file)
     await UserAPI.savePicture(file, usernameUrl)
     window.location.reload()
   }

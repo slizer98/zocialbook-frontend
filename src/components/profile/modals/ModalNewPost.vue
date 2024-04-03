@@ -1,6 +1,7 @@
 <script setup>
   import { useUserStore } from '@/stores/user';
   import { usePostStore } from '@/stores/post';
+  import PostAPI from '@/api/PostAPI'
   import TexEditor from '@/components/TextEditor.vue'
 
   const user = useUserStore()
@@ -9,9 +10,18 @@
   defineProps(['isPostOpen'])
   defineEmits(['toggleModal'])
   
-  const getText = () => {
-    console.log(post?.textPost)
-    console.log(post?.imagePost)
+  const getText = async() => {
+    const createdAt = new Date().toISOString()
+    const newPost = {
+      textPost: post.textPost,
+      createdAt: createdAt,
+      imagePost: post?.imagePost,
+      userId: user?.user._id
+    }
+    console.log(newPost)
+    const { data } = await PostAPI.createPost(newPost)
+    console.log(data)
+
   }
   
 </script>
