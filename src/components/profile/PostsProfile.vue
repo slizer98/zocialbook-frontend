@@ -7,11 +7,12 @@
 </script>
 
 <template>
-  <section class=" w-full sm:ml-4 bg-gray-50 box-border rounded-md shadow-lg p-4">
+  <section class=" my-4 p-2 md:p-6 w-[99%] bg-white rounded-md shadow-lg">
     <h2 class="font-semibold text-xl md:text-2xl text-gray-800">Mis publicaciones</h2>      <!-- nueva publicacion -->
     <p v-if="!post?.existPost" class="text-center mt-8 font-semibold">No tienes publicaciones aún</p>
   </section>
   <PostCard />
+  
 
 </template>
 

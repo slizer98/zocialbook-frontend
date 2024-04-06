@@ -22,7 +22,7 @@
 </script>
 
 <template>
-  <article class="w-[99%] sm:ml-4 mb-4 bg-gray-50 box-border rounded-md shadow-lg p-4">
+  <article class="my-4 p-2 md:p-6 w-[99%] bg-white rounded-md shadow-lg">
     <div class="flex gap-2 ">
 
       <!-- foto de perfil en miniatura -->

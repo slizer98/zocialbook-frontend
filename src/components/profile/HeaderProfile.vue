@@ -43,7 +43,7 @@
 
 </script>
 <template>
-  <header class="w-full sm:px-6 md:px-12 lg:px-28 bg-gray-50 shadow-lg">
+  <header class="w-full sm:px-6  md:px-12 lg:px-28 bg-gray-50 shadow-lg">
     <div class="border border-red-500 h-40 md:h-80 w-full relative">
       <figure
         class=" h-20 w-20 sm:h-24 sm:w-24 md:w-36 md:h-36  border  flex justify-center items-center rounded-full absolute -bottom-10 left-4 md:-bottom-16 "
