@@ -5,6 +5,7 @@ import AuthAPI from '@/api/AuthAPI';
 export const useUserStore = defineStore('user', () => {
   const user = ref({});
   const userLogged = ref(false);
+  const postIds = ref([]);
 
   const monthNames = [
     'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -16,15 +17,21 @@ export const useUserStore = defineStore('user', () => {
       const { data } = await AuthAPI.auth();
       user.value = data;
       user.value.birthday = transformBirthdayToEdit();
-      localStorage.setItem('user_data', JSON.stringify(data));
-      userLogged.value = true;
+      localStorage.setItem('user_data', JSON.stringify(data))
+      userLogged.value = true
     } catch (error) {
       console.error(error);
     }
   };
 
-  onMounted(loadUser);
+  const userLoaded = new Promise((resolve) => {
+    onMounted(async () => {
+      await loadUser();
+      resolve(true);
+    });
+  });
 
+  
   const transformDate = (date) => {
     const newDate = new Date(date);
     const year = newDate.getFullYear();
@@ -72,12 +79,14 @@ export const useUserStore = defineStore('user', () => {
 
   return {
     user,
+    postIds,
     getFirstLetter,
     transformDate,
     transformBirthday,
     userLogged,
     updateUser,
     disableScroll,
-    enableScroll
+    enableScroll,
+    userLoaded,
   };
 });

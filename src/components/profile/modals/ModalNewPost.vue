@@ -9,6 +9,7 @@
 
   defineProps(['isPostOpen'])
   defineEmits(['toggleModal'])
+
   
   const getText = async() => {
     const createdAt = new Date().toISOString()
@@ -16,7 +17,8 @@
       textPost: post.textPost,
       createdAt: createdAt,
       imagePost: post?.imagePost,
-      userId: user?.user._id
+      userId: user?.user._id,
+      usernameUrl: user?.user.usernameUrl,
     }
     console.log(newPost)
     const { data } = await PostAPI.createPost(newPost)

@@ -1,8 +1,9 @@
 <script setup>
+  import PostCard from '@/components/shared/PostCard.vue';
   import { usePostStore } from '@/stores/post';
-
   const post = usePostStore()
-  console.log(post.existPost)
+  
+  
 </script>
 
 <template>
@@ -10,6 +11,8 @@
     <h2 class="font-semibold text-xl md:text-2xl text-gray-800">Mis publicaciones</h2>      <!-- nueva publicacion -->
     <p v-if="!post?.existPost" class="text-center mt-8 font-semibold">No tienes publicaciones aún</p>
   </section>
+  <PostCard />
+
 </template>
 
 
