@@ -24,5 +24,13 @@ export default {
         Authorization: `Bearer ${token}`
       }
     })
+  },
+  likePost(postId) {
+    const token = localStorage.getItem('AUTH_TOKEN')
+    return api.post('/post/like-post', { postId }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
   }
 }

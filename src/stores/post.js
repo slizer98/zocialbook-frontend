@@ -9,6 +9,7 @@ export const usePostStore = defineStore('post', () => {
   const posts = ref([])
   const textPost = ref('')
   const imagePost = ref(null)
+  const isLiked = ref(false)
 
   const user = useUserStore()
   const userLoaded = user.userLoaded;
@@ -26,11 +27,19 @@ export const usePostStore = defineStore('post', () => {
     posts.value = data
   }
   
+  const likePost = async (postId) => {
+    const {data} = await PostAPI.likePost(postId)
+    isLiked.value = data
+  }
+
+  const hasLike = computed(() => isLiked.value)
 
   return {
     textPost,
     imagePost,
     existPost,
     posts,
+    likePost,
+    hasLike,
   }
 })
