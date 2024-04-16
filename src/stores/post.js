@@ -10,6 +10,7 @@ export const usePostStore = defineStore('post', () => {
   const textPost = ref('')
   const imagePost = ref(null)
   const isLiked = ref(false)
+  const likes = ref(0)
 
   const user = useUserStore()
   const userLoaded = user.userLoaded;
@@ -20,26 +21,42 @@ export const usePostStore = defineStore('post', () => {
     getPosts(usernameUrl)
   });
 
+
   const existPost = computed(() => posts.value.length > 0) 
 
   const getPosts = async (usernameUrl) => {
-    const { data } = await PostAPI.getPosts(usernameUrl)
-    posts.value = data
+    try {
+      const { data } = await PostAPI.getPosts(usernameUrl);
+      posts.value = data;
+    } catch (error) {
+      console.error('Error al obtener los posts:', error);
+    }
   }
   
-  const likePost = async (postId) => {
-    const {data} = await PostAPI.likePost(postId)
-    isLiked.value = data
-  }
-
-  const hasLike = computed(() => isLiked.value)
+  const findIfUserLiked = async (postId) => {
+    try {
+      const { data } = await PostAPI.likePost(postId);
+      return {
+        isLiked: data.liked,
+        likesCount: data.likes
+      };
+    } catch (error) {
+      console.error('Error al obtener el estado de like:', error);
+      return {
+        isLiked: false,
+        likesCount: 0
+      };
+    }
+  };
 
   return {
     textPost,
     imagePost,
     existPost,
     posts,
-    likePost,
-    hasLike,
+    findIfUserLiked,
+    isLiked,
+    likes,
+    getPosts,
   }
 })
