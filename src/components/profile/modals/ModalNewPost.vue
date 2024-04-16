@@ -8,10 +8,10 @@
   const post = usePostStore()
 
   defineProps(['isPostOpen'])
-  defineEmits(['toggleModal'])
+  const emit  = defineEmits(['toggleModal'])
 
   
-  const getText = async() => {
+  const createPost = async() => {
     const createdAt = new Date().toISOString()
     const newPost = {
       textPost: post.textPost,
@@ -20,9 +20,17 @@
       userId: user?.user._id,
       usernameUrl: user?.user.usernameUrl,
     }
-    console.log(newPost)
-    const { data } = await PostAPI.createPost(newPost)
-    console.log(data)
+    await PostAPI.createPost(newPost)
+    emit('toggleModal')
+    post.textPost = ''
+    post.imagePost = ''
+    const usernameUrl = user.user.usernameUrl
+    await post.getPosts(usernameUrl)
+    window.scrollBy({
+      top: 100,
+      behavior: 'smooth'
+    }); 
+
 
   }
   
@@ -57,7 +65,7 @@
       </div>
       <!-- aqui va el contenido del modal -->
       <TexEditor />
-      <button type="submit" @click="getText"  class="bg-primary w-full p-2 mx-auto mt-4 rounded-md text-gray-100">Publicar</button>
+      <button type="submit" @click="createPost"  class="bg-primary w-full p-2 mx-auto mt-4 rounded-md text-gray-100">Publicar</button>
     </div>
   </section>
 </template>

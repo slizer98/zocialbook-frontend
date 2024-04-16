@@ -4,11 +4,26 @@
   import { transformDate } from '@/utils';
   import regularHeart from '@/assets/icons/regularHeart.svg'
   import solidHeart from '@/assets/icons/solidHeart.svg'
-
+  import { ref } from 'vue';
 
   const postStore = usePostStore()
   const user = useUserStore()
-  console.log(postStore.hasLike)
+
+  const likeInfo = ref({})
+
+  const updateIsLiked = async (postId) => {
+    likeInfo.value[postId] = await postStore.findIfUserLiked(postId); 
+  };
+
+  // Función para obtener el recuento de likes de una publicación específica
+const getLikesCount = (postId) => {
+  // Verifica si la información de likes para la publicación está disponible en likeInfo
+  if (likeInfo.value[postId]) {
+    return likeInfo.value[postId].likesCount; // Devuelve el recuento de likes
+  } else {
+    return 0; // Devuelve 0 si la información de likes no está disponible
+  }
+};
   
 </script>
 <template>
@@ -37,22 +52,22 @@
       <div>
         <button 
           class="my-4 cursor-pointer hover:opacity-60"
-          @click="postStore.likePost(post._id)"
+          @click="updateIsLiked(post._id)"
         >
           <img 
-            v-if="postStore.hasLike"
-            :src="regularHeart" 
+            v-if="likeInfo[post._id]?.isLiked"
+            :src="solidHeart" 
             alt="icono de libro con corazon en el centro"
             class="w-8 h-8"
           >
           <img 
             v-else
-            :src="solidHeart" 
+            :src="regularHeart" 
             alt="icono de libro con corazon en el centro"
             class="w-8 h-8"
           >
         </button>
-        <span class="font-semibold">{{post.likes}}</span>
+        <span class="font-semibold">{{getLikesCount(post._id)}}</span>
       </div>
 
     </section>
